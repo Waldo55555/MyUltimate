@@ -1,0 +1,105 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="The18th.Home" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+<title>Avatar Growers</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="shortcut icon" type="image/x-icon" href="https://the18thstorage.blob.core.windows.net/the18thcontainer/favicon.ico" />
+<%--The only thing that stays--%>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
+            
+<%: Styles.Render("~/bundles/mycss") %>
+<%: Styles.Render("~/bundles/layout") %>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <%--navBackgoundimg added--%>
+            <div class="navbar navbar-default navbar-fixed-top"> <%--navBackgroundimg" role="navigation--%>
+          
+                <div class="container">
+
+                    <div class="navbar-header">
+
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                            <span class="sr-only"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                                           
+                        <a href="Default.aspx" class="navbar-brand">Avatar Growers(beta)</a>
+
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+
+                        <ul class="nav navbar-nav navbar-right">
+
+                                  <li><a href="~/Home.html">Directory</a></li>
+
+                                  <li><a href="/ChartFarmInventory">Analysis</a></li>
+
+                                  <li><a href="/Statistics">Statistics</a></li>
+
+                                  <li><a href="/Trends">Trends</a></li>
+
+                                  <li><a href="/News">News</a></li>
+                             
+                                  <li><a href="/Resources">Resources</a></li>
+                                            
+                          </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            
+            <br />
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+
+
+            <br />
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+            <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+
+        </div>
+    </form>
+        
+<!---------Footer----->
+    <div class="navbar navbar-default navbar-fixed-bottom">
+
+        <div class="container">
+
+            <br />
+
+            <center><p>Contact Us Today!&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:the18th_helpdesk@yahoo.com">Member Service</a></p></center>
+
+            <center><p>Developed By: Meek Tech - Copyright &copy; 2023 - All Rights Reserved</p></center>
+
+            <center><p>Committee Admin: &nbsp;&nbsp;<a href="/SteeringFace">Enter Steering Committee</a></p></center>
+
+        </div>
+
+    </div>
+
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+</body>
+</html>
