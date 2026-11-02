@@ -1,7 +1,12 @@
 ﻿
 @{
     ViewBag.Title = "BecomeAGrower";
-    Layout = "~/Areas/MemberShip/Views/Shared/_MemberDashLayoutPage.cshtml";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
+
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
+
+
 }
 
 <h2>BecomeAGrower</h2>

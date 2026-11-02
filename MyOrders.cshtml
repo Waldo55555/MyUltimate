@@ -1,37 +1,17 @@
 ﻿
 @{
     ViewBag.Title = "MyOrders";
-    Layout = "~/Areas/MemberShip/Views/Shared/_MemberDashLayoutPage.cshtml";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
 
-    ////////2nd Level...Original
-    //HttpCookie memberCookie = Request.Cookies["MemberCookieInfo"];
-    //string membershipNumber = memberCookie["memberNumber"];
-    //string accountNumber = memberCookie["accountNumber"];
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
+      
+    var ourPhoto = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationProfilePhoto(currentMemberNumber);
 
+    The18th.Areas.TribalCRM.TribalDTOs.MembershipDto myMembership = new The18th.Areas.TribalCRM.TribalDTOs.MembershipDto();
+    myMembership.MembershipNumber = currentMemberNumber;
 
-    //Evaluation
-    ////New...Start
-    string invitationAccountNumber = Request.QueryString["invitationAccountNumber"];
-
-    HttpCookie invitationCookie = Request.Cookies["InviteCookieInfo"];
-    string membershipNumber = invitationCookie["invitationNumber"];
-    string accountNumber = invitationCookie["invitationNumber"];
-
-    ////New...End
-
-
-    //Original
-    //var ourPhoto = The18th.Areas.MemberShip.Data.MembershipManager.GetProfilePhoto(accountNumber);
-
-    var ourPhoto = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationProfilePhoto(accountNumber);
-
-    The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto myMembership = new The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto();
-    myMembership.MembershipNumber = membershipNumber;
-
-    //Original
-    //var ourMembership = The18th.Areas.MemberShip.Data.MembershipManager.GetAMembership(membershipNumber);
-
-    var ourMembership = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMembership(membershipNumber);
+    var ourMembership = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationMembership(currentMemberNumber);
 
     /////////////Format Phone
 
@@ -43,26 +23,20 @@
 
     /////////////Format Phone End
 
+    var memberOrders = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationMyOrders(currentMemberNumber);
 
-    //Original
-    //var memberOrders = The18th.Areas.OneState.Data.CustomerManager.GetMyOrders(accountNumber);
-    //var memberPayments = The18th.Areas.OneState.Data.CustomerManager.GetMyPayments(accountNumber);
-    //var memberShippings = The18th.Areas.OneState.Data.CustomerManager.GetMyShippings(accountNumber);
+    var memberPayments = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationMyPayments(currentMemberNumber);
 
-
-    var memberOrders = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyOrders(accountNumber);
-
-    var memberPayments = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyPayments(accountNumber);
-
-    var memberShippings = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyShippings(accountNumber);
+    var memberShippings = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationMyShippings(currentMemberNumber);
 
     ///////////////////////////Favorite Count
+     
 
-    //Original
-    //var myFavorites = The18th.Areas.MemberShip.Data.MembershipManager.GetAllMyFavorites(accountNumber);
+    //Keep
+    //var myFavorites = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationAllMyFavorites(accountNumber);
 
-
-    var myFavorites = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationAllMyFavorites(accountNumber);
+    //By List
+    var myFavorites = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationAllMyFavoritesByList(currentMemberNumber);
 
 
     //here
@@ -125,7 +99,18 @@
         <tbody>
             <tr class="">
                 <td>
-                    @Ajax.ActionLink("See Orders", "SeeOrders", new { UrlData = membershipNumber, membershipNumber }, new AjaxOptions()
+                    @Ajax.ActionLink("See Orders", "SeeOrders", new { UrlData = currentMemberNumber, currentMemberNumber }, new AjaxOptions()
+                       {
+
+                           HttpMethod = "GET",
+                           UpdateTargetId = "displayarea",
+                           InsertionMode = InsertionMode.Replace,
+                           LoadingElementId = "loadSpinner",
+                           OnBegin = "EmptyOut"
+                        })
+                </td>
+                <td>
+                    @Ajax.ActionLink("See Payment", "SeePayments", new { UrlData = currentMemberNumber, currentMemberNumber }, new AjaxOptions()
                        {
 
                            HttpMethod = "GET",
@@ -134,24 +119,10 @@
                            LoadingElementId = "loadSpinner",
                            OnBegin = "EmptyOut"
 
-
-
                        })
                 </td>
                 <td>
-                    @Ajax.ActionLink("See Payment", "SeePayments", new { UrlData = membershipNumber, membershipNumber }, new AjaxOptions()
-                       {
-
-                           HttpMethod = "GET",
-                           UpdateTargetId = "displayarea",
-                           InsertionMode = InsertionMode.Replace,
-                           LoadingElementId = "loadSpinner",
-                           OnBegin = "EmptyOut"
-
-                       })
-                </td>
-                <td>
-                    @Ajax.ActionLink("See Shipments", "SeeShipments", new { UrlData = membershipNumber, membershipNumber }, new AjaxOptions()
+                    @Ajax.ActionLink("See Shipments", "SeeShipments", new { UrlData = currentMemberNumber, currentMemberNumber }, new AjaxOptions()
                        {
 
                            HttpMethod = "GET",

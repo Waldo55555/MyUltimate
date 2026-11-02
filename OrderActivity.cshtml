@@ -1,0 +1,132 @@
+﻿@model IEnumerable<The18th.Areas.TribalCRM.TribalDTOs.DriveOrderDto>
+
+@{
+
+    ViewBag.Title = "OrderActivity";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
+
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
+
+}
+
+<h2>Order Activity</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.DriveOrderID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.DriveImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionNumber)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.SubTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tax)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.StringTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StringTax)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CartCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CropIndex)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CardStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipStatus)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.GrowerNumber)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DriveOrderID)
+        </td>*@
+        <td>
+           @*@Html.DisplayFor(modelItem => item.DriveImage)*@
+
+           <img src="@Url.Content(item.DriveImage)" class="img-fluid img-rounded" width="100" height="100" alt="member photo" />
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderNumber)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CartNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionNumber)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.SubTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tax)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.StringTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StringTax)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CartCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CropIndex)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipStatus)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.GrowerNumber)
+        </td>*@
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>

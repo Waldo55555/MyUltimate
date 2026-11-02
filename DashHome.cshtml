@@ -2,87 +2,50 @@
 @{
 
     ViewBag.Title = "MyDash";
-    Layout = "~/Areas/MemberShip/Views/Shared/_MemberDashLayoutPage.cshtml";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
 
-    //////2nd Level...Original
-    //HttpCookie memberCookie = Request.Cookies["MemberCookieInfo"];
-    //string membershipNumber = memberCookie["memberNumber"];
-    //string accountNumber = memberCookie["accountNumber"];
-
+    //////2nd Level
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
 
     //Evaluation
-    ////New...Start
-    string invitationAccountNumber = Request.QueryString["invitationAccountNumber"];
+    var ourPhoto = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationProfilePhoto(currentMemberNumber); //accountNumber
 
-    HttpCookie invitationCookie = Request.Cookies["InviteCookieInfo"];
-    string membershipNumber = invitationCookie["invitationNumber"];
-    string accountNumber = invitationCookie["invitationNumber"];
-
-    ////New...End
-
-
-    //Original
-    //var ourPhoto = The18th.Areas.MemberShip.Data.MembershipManager.GetProfilePhoto(accountNumber);
+    The18th.Areas.TribalCRM.TribalDTOs.MembershipDto myMembership = new The18th.Areas.TribalCRM.TribalDTOs.MembershipDto();
+    myMembership.MembershipNumber = currentMemberNumber;
 
     //Evaluation
-    var ourPhoto = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationProfilePhoto(accountNumber); //accountNumber
-
-
-    The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto myMembership = new The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto();
-    myMembership.MembershipNumber = membershipNumber;
-
-    //Original
-    //var ourMembership = The18th.Areas.MemberShip.Data.MembershipManager.GetAMembership(membershipNumber);
+    var ourMembership = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationMembership(currentMemberNumber);
 
     //Evaluation
-    var ourMembership = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMembership(membershipNumber);
+    var memberOrders = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationMyOrders(currentMemberNumber);
 
-    //Original
-    //var memberOrders = The18th.Areas.TribalCRM.OneStateData.CustomerManager.GetMyOrders(accountNumber);
+    var memberPayments = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationMyPayments(currentMemberNumber);
 
-    //var memberPayments = The18th.Areas.TribalCRM.OneStateData.CustomerManager.GetMyPayments(accountNumber);
-
-    //var memberShippings = The18th.Areas.TribalCRM.OneStateData.CustomerManager.GetMyShippings(accountNumber);
-
-    //Evaluation
-    var memberOrders = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyOrders(accountNumber);
-
-    var memberPayments = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyPayments(accountNumber);
-
-    var memberShippings = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyShippings(accountNumber);
-
+    //var memberDeliveries = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationMyDeliveries(growerNumber);
 
     ///////////////////////////Favorite Count
 
-
-    //The18th.Areas.MemberShip.Data.EvaluationManager
-
-
-    //Original
-    //var myFavorites = The18th.Areas.MemberShip.Data.MembershipManager.GetAllMyFavorites(accountNumber);
-
     //Evaluation
-    var myFavorites = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationAllMyFavorites(accountNumber);
+    var myFavorites = The18th.Areas.TribalCRM.Data.TribalEvaluationManager.GetEvaluationAllMyFavoritesByList(currentMemberNumber);
 
 
     if (myFavorites.Count == 0)
     {
 
-        The18th.Areas.MemberShip.MemberShipDTOs.MemberFavoritesDto myfavs = new The18th.Areas.MemberShip.MemberShipDTOs.MemberFavoritesDto();
+        The18th.Areas.TribalCRM.TribalDTOs.MemberFavoritesDto myfavs = new The18th.Areas.TribalCRM.TribalDTOs.MemberFavoritesDto();
         myfavs.MyFavorites = 0;
 
 
-        List<The18th.Areas.MemberShip.MemberShipDTOs.MemberFavoritesDto> noActivityList = new List<The18th.Areas.MemberShip.MemberShipDTOs.MemberFavoritesDto>();
+        List<The18th.Areas.TribalCRM.TribalDTOs.MemberFavoritesDto> noActivityList = new List<The18th.Areas.TribalCRM.TribalDTOs.MemberFavoritesDto>();
         noActivityList.Add(myfavs);
 
         //return;
-
 
     }
 
 
 }
-
 
 <script type="text/javascript" language="javascript">
 
@@ -93,7 +56,6 @@
     }
 
 </script>
-
 
 <center><h2>Member Dash</h2></center>
 
@@ -125,7 +87,7 @@
                 <tr>
                     <th>
                         <center>
-                            @Ajax.ActionLink("See Benefits", "SeeBenefits", new { UrlData = accountNumber, accountNumber }, new AjaxOptions()
+                            @Ajax.ActionLink("See Benefits", "SeeBenefits", new { UrlData = currentMemberNumber, currentMemberNumber }, new AjaxOptions()
                                {
 
                                    HttpMethod = "GET",
@@ -148,9 +110,7 @@
         <center><div id="loadSpinner" style="display:none"> <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" height="120" width="120" alt="Loading..." /></div></center>
         <div id="displayarea"><span></span></div>
 
-
     </div>
-
 
     <div class="container-fluid">
         <ul>
@@ -161,17 +121,20 @@
                     <center><p>HBCU Pledges&nbsp;<span class="label label-danger">Needs Work</span></p></center>
                 </div>*@
                 <div class="col-lg-3 col-xs-12">
-                    <center><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/torp.png" alt="Picture" /></center><br />
+                    @*<center><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/torp.png" alt="Picture" /></center><br />*@
+                    <center><img src="/Images/torp.png" alt="Picture" /></center><br />
                     <center><p><strong>Platform Support</strong></p></center>
                     <center><p>Using Support Options&nbsp;<span class="label label-danger">Needs Work</span></p></center>
                 </div>
                 <div class="col-lg-3 col-lg-offset-1 col-xs-12">
-                    <center><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/busfam.png" alt="Picture" /></center><br />
+                    @*<center><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/busfam.png" alt="Picture" /></center><br />*@
+                    <center><img src="/Images/busfam.png" alt="Picture" /></center><br />
                     <center><p><strong>Purchase Activity</strong></p></center>
                     <center><p>Crop Spending&nbsp;<span class="label label-warning">20%</span></p></center>
                 </div>
                 <div class="col-lg-3 col-lg-offset-1 col-xs-12">
-                    <center><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/bankfam.png" alt="Picture" /></center><br />
+                    @*<center><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/bankfam.png" alt="Picture" /></center><br />*@
+                    <center><img src="/Images/bankfam.png" alt="Picture" /></center><br />
                     <center><p><strong>Tribal Card Activity</strong></p></center>
                     <center><p>Loyalty Card Use&nbsp;<span class="label label-success">Good!</span></p></center>
                 </div>

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<title>AG Market(Beta)</title>
+<title>Avatar Growers</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=0">
@@ -29,7 +29,7 @@
 <body>
     <div class="navbar navbar-default navbar-fixed-top"> 
             <div class="container-fluid">
-                <a href="Welcome.aspx" class="navbar-brand">AG Market(Beta)</a>
+                <a href="Default.aspx" class="navbar-brand">Avatar Growers(Beta)</a>
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -60,17 +60,14 @@
 
                 <br /><br />
            	
-	            <%--<center><h2><em><strong>Almost There!<img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/greencheck.gif" alt="picture" /></strong></em></h2></center>--%>
-                <center><h2><em><strong>Almost There!<img src="/images/greencheck.gif" alt="picture" /></strong></em></h2></center>
+	            <center><h2><em><strong>Almost There!<img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/greencheck.gif" alt="picture" /></strong></em></h2></center>
 
 	            <center><h4><em><strong>One last step of creating your member card. Use your membership card for all member activities.</strong></em></h4></center>
          
                 <center><h4><em><strong>Continue to create your membership card below.</strong></em></h4></center><br /><br />
 
-                <%-- <center><asp:ImageButton ID="oneImageButton" ImageUrl="https://the18thstorage.blob.core.windows.net/the18thcontainer/onecard.png" Height="120px" Width="280px" runat="server" OnClientClick="return confirm('I Prefer A One United Card')" OnClick="oneImageButton_Click" />&nbsp;<asp:Label ID="oneLabel" runat="server" Text="Select One United"></asp:Label>&nbsp; &nbsp; &nbsp; <asp:ImageButton ID="greenImageButton" ImageUrl="https://the18thstorage.blob.core.windows.net/the18thcontainer/greencard.png" Height="120px" Width="270px" runat="server" OnClientClick="return confirm('I Prefer A Green Wood Card')" OnClick="greenImageButton_Click" />&nbsp;<asp:Label ID="greenLabel" runat="server" Text="Select Greenwood"></asp:Label></center>--%>
+                <center><asp:ImageButton ID="oneImageButton" ImageUrl="https://the18thstorage.blob.core.windows.net/the18thcontainer/onecard.png" Height="120px" Width="280px" runat="server" OnClientClick="return confirm('I Prefer A One United Card')" OnClick="oneImageButton_Click" />&nbsp;<asp:Label ID="oneLabel" runat="server" Text="Select One United"></asp:Label>&nbsp; &nbsp; &nbsp; <asp:ImageButton ID="greenImageButton" ImageUrl="https://the18thstorage.blob.core.windows.net/the18thcontainer/greencard.png" Height="120px" Width="270px" runat="server" OnClientClick="return confirm('I Prefer A Green Wood Card')" OnClick="greenImageButton_Click" />&nbsp;<asp:Label ID="greenLabel" runat="server" Text="Select Greenwood"></asp:Label></center>
    
-                 <center><asp:ImageButton ID="oneImageButton" ImageUrl="/images/onecard.png" Height="120px" Width="280px" runat="server" OnClientClick="return confirm('I Prefer A One United Card')" OnClick="oneImageButton_Click" />&nbsp;<asp:Label ID="oneLabel" runat="server" Text="Select One United"></asp:Label>&nbsp; &nbsp; &nbsp; <asp:ImageButton ID="greenImageButton" ImageUrl="/images/greencard.png" Height="120px" Width="270px" runat="server" OnClientClick="return confirm('I Prefer A Green Wood Card')" OnClick="greenImageButton_Click" />&nbsp;<asp:Label ID="greenLabel" runat="server" Text="Select Greenwood"></asp:Label></center>
-
                 <asp:Label ID="resultLabel" runat="server" Text="" Visible="false"></asp:Label>
           
                 <br />  
@@ -95,8 +92,8 @@
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
             <br />
-           
-            <center><p>Developer on Duty: Waldo - Copyright &copy; 2024 - All Rights Reserved</p></center>
+            <center><p>Contact Us Today!&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:the18th_helpdesk@yahoo.com">Member Service</a></p></center>
+            <center><p>Developed By: Meek Tech - Copyright &copy; 2023 - All Rights Reserved</p></center>
         </div>
     </div>
 

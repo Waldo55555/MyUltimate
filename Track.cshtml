@@ -1,13 +1,12 @@
-﻿@model The18th.Areas.TribalCRM.OneStateDTOs.TrackingDto
+﻿@model The18th.Areas.TribalCRM.TribalDTOs.TrackingDto
 
 @{
     ViewBag.Title = "Track";
-    Layout = "~/Areas/MemberShip/Views/Shared/_MemberDashLayoutPage.cshtml";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_AnonymousLayoutPage.cshtml";
 
-    //////2nd Level
-    HttpCookie memberCookie = Request.Cookies["MemberCookieInfo"];
-    string membershipNumber = memberCookie["memberNumber"];
-    string accountNumber = memberCookie["accountNumber"];
+    //HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    //var currentMemberNumber = currentMemberCookie["membershipNumber"];
+
 
 }
 

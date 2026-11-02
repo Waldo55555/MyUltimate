@@ -4,85 +4,82 @@
 
     string total = Request.QueryString["total"];
 
-    //////2
-    //HttpCookie memberCookie = Request.Cookies["MemberCookieInfo"];
-    //string memberAccountNumber = memberCookie["memberNumber"];
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
 
     //for rendering fanbase
     var avatargrowers = "@avatargrowers";
-
 }
 
-
 @*<center>*@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>One State</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    @*<link rel="stylesheet" href="~/layout/styles/layout.css" type="text/css" />*@
-    <link rel="shortcut icon" type="image/x-icon" href="https://the18thstorage.blob.core.windows.net/the18thcontainer/favicon.ico" />
-    @*<script type="text/javascript" src="~/layout/scripts/jquery.min.js"></script>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>One State</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        @*<link rel="stylesheet" href="~/layout/styles/layout.css" type="text/css" />*@
+        <link rel="shortcut icon" type="image/x-icon" href="https://the18thstorage.blob.core.windows.net/the18thcontainer/favicon.ico" />
+        @*<script type="text/javascript" src="~/layout/scripts/jquery.min.js"></script>
         <script type="text/javascript" src="~/layout/scripts/jquery.ui.min.js"></script>*@
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
         <script src="~/Scripts/jquery.validate.min.js"></script>
         <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
-    @using Microsoft.Web.Helpers;
-    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/CustomStyles.css" rel="stylesheet">
-    <link href="~/Navigation.css" rel="stylesheet">
-    @*<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        @using Microsoft.Web.Helpers;
+        <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/CustomStyles.css" rel="stylesheet">
+        <link href="~/Navigation.css" rel="stylesheet">
+        @*<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="CustomStyles.css" rel="stylesheet">
         <link href="Navigation.css" rel="stylesheet">*@
 
-</head>
-<body>
-    <div class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            @*<a href="/MarketPlace/Market/AllVendors?memberAccountNumber=@memberAccountNumber + &vendorNumber= + @vendorNumber" class="navbar-brand">One Farm(beta)</a>*@
-            <a href="Welcome.aspx" class="navbar-brand">One State(beta)</a>
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="collapse navbar-collapse navHeaderCollapse">
-                <ul class="nav navbar-nav navbar-right">
-                    @*<li><a href="/OneState/OneState/PaymentGrid">Payment Grid</a></li>*@
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                @*<a href="/MarketPlace/Market/AllVendors?memberAccountNumber=@memberAccountNumber + &vendorNumber= + @vendorNumber" class="navbar-brand">One Farm(beta)</a>*@
+                <a href="Welcome.aspx" class="navbar-brand">One State(beta)</a>
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse navHeaderCollapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        @*<li><a href="/OneState/OneState/PaymentGrid">Payment Grid</a></li>*@
 
-                    <li><a href="/AllGrowers">Growers Market</a></li>
+                        <li><a href="/AllGrowers">Growers Market</a></li>
 
-                    <li><a href="/Growers/Market/GoToDonations">Donations</a></li>
+                        <li><a href="/Growers/GrowersMarket/GoToDonations">Donations</a></li>
 
-                    @*<li><a href="/GrowersMarket/GrowersMarket/AboutFavorites">About Favorites</a></li>*@
-                </ul>
+                        @*<li><a href="/GrowersMarket/GrowersMarket/AboutFavorites">About Favorites</a></li>*@
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="~/bootstrap/js/bootstrap.min.js"></script>
 
 
-    <div class="page-header">
+        <div class="page-header">
 
-        <br /><br />
+            <br /><br />
 
-        <h1>One State Payments</h1>
+            <h1>One State Payments</h1>
 
-        <p class="lead">"A different way to pay"</p>
+            <p class="lead">"A different way to pay"</p>
 
-    </div>
+        </div>
 
-    @* Begining center tag Moved from here*@
-    <center>
-        <div>
-            <script src="https://www.paypal.com/sdk/js?client-id=AQ6A6kHw_EF3gLPT3gTCHbN5t-eJr-4UWFZt6-aTsfBRS6QNAzpIDnF-o1DMZ6GsLq-0okjbJnLgjIv2&currency=USD"></script>
-            <!-- Set up a container element for the button -->
-            <div id="paypal-button-container"></div>
-            <script>
+        @* Begining center tag Moved from here*@
+        <center>
+            <div>
+                <script src="https://www.paypal.com/sdk/js?client-id=AQ6A6kHw_EF3gLPT3gTCHbN5t-eJr-4UWFZt6-aTsfBRS6QNAzpIDnF-o1DMZ6GsLq-0okjbJnLgjIv2&currency=USD"></script>
+                <!-- Set up a container element for the button -->
+                <div id="paypal-button-container"></div>
+                <script>
 
                 window.onload = function payMe() {
 
@@ -110,40 +107,40 @@
                             // element.innerHTML = '<h3>Thank you for your payment!</h3>';
                             // Or go to another URL:  actions.redirect('thank_you.html');
 
-                            actions.redirect('~/Support/Support/DonateFace');
+                            actions.redirect('~/TribalCRM/Tribal/PayPalConfirmation');
                         });
                     }
                 }).render('#paypal-button-container');
             }
-            </script>
+                </script>
+            </div>
+        </center>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <!--Footer-->
+        <div class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <br />
+                <center><p>AG Newsletter:&nbsp;&nbsp;<a href="https://avatar-growers.com/newsletter/" target="_blank">Suscribe</a>&nbsp;|&nbsp;Contact Us Today!&nbsp;&nbsp;<a href="mailto:the18th_helpdesk@yahoo.com">Information</a></p></center>
+                <center><p><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/fanbpic.png" height="20" width="20" alt="fanpic" />&nbsp;Join Us On Fanbase:&nbsp;&nbsp;<a href="https://www.fanbase.app/@avatargrowers" target="_blank">Suscribe</a>&nbsp;|&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
+                @*<center><p><a href="TrackDonation.aspx">Track My Donations</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>*@
+                <center><p><a href="TrackDonation.aspx">Track My Donations</a>&nbsp;|&nbsp;<a href="TribalCRM/OneState/DonateFace">Donate</a></p></center>
+                <center><p>Developed By: Meek Tech - Copyright &copy; 2020 - All Rights Reserved</p></center>
+                @*<center><p>Committee Admin: &nbsp;&nbsp;<a href="/SteeringFace">Enter Steering</a></p></center>*@
+            </div>
         </div>
-    </center>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <!--Footer-->
-    <div class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
-            <br />
-            <center><p>AG Newsletter:&nbsp;&nbsp;<a href="https://avatar-growers.com/newsletter/" target="_blank">Suscribe</a>&nbsp;|&nbsp;Contact Us Today!&nbsp;&nbsp;<a href="mailto:the18th_helpdesk@yahoo.com">Information</a></p></center>
-            <center><p><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/fanbpic.png" height="20" width="20" alt="fanpic" />&nbsp;Join Us On Fanbase:&nbsp;&nbsp;<a href="https://www.fanbase.app/@avatargrowers" target="_blank">Suscribe</a>&nbsp;|&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
-            @*<center><p><a href="TrackDonation.aspx">Track My Donations</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>*@
-            <center><p><a href="TrackDonation.aspx">Track My Donations</a>&nbsp;|&nbsp;<a href="Affiliates/Fanbase/DonateFace">Donate</a></p></center>
-            <center><p>Developed By: Meek Tech - Copyright &copy; 2020 - All Rights Reserved</p></center>
-            @*<center><p>Committee Admin: &nbsp;&nbsp;<a href="/SteeringFace">Enter Steering</a></p></center>*@
-        </div>
-    </div>
 
-</body>
+    </body>
 </html>
 <br />
 <br />

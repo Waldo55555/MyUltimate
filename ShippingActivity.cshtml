@@ -1,0 +1,133 @@
+﻿@model IEnumerable<The18th.Areas.TribalCRM.TribalDTOs.DriveCustomerDto>
+
+@{
+    ViewBag.Title = "ShippingActivity";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
+
+
+    //HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    //var currentMemberNumber = currentMemberCookie["membershipNumber"];
+
+
+}
+
+<h2>Shipping Activity</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustImage)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.DriveCustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.IPAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberAccountNumber)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.TrackingNumber)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.ShippingNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Driver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.CustImage)*@
+
+            <img src="@Url.Content(item.CustImage)" class="img-fluid img-rounded" width="40" height="40" alt="member photo" />
+
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DriveCustomerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CartNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderNumber)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IPAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberAccountNumber)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.TrackingNumber)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.ShippingNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryTime)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>

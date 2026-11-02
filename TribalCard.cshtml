@@ -1,0 +1,207 @@
+﻿@model The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto
+
+@{
+    ViewBag.Title = "TribalCard";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
+
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
+
+}
+
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/CustomStyles.css" rel="stylesheet">
+<link href="~/BackgroundStyles.css" rel="stylesheet">
+
+
+<div>
+    <p>
+        <Center><strong><em><Big>Tribal Cards are for all financial transactions with OneState.</Big></em></strong></Center>
+
+    </p>
+
+    <center><img src="@Url.Content(Model.CardVendor)" height="120" width="240" alt="oops!" /></center>
+
+</div>
+
+<hr />
+
+<center><h2>Member Participation</h2></center>
+
+<center>
+
+    <h3>Member Card</h3>
+
+    <p>Member cards are for every induvidual member for everyday purchases inside our network.</p>
+
+    <p>Since members are owners of OneFarm as a Co-Operative this card will also be used for any payouts to respective members.</p>
+
+    <p class="title"><a href="/TribalCRM/Tribal/MemberInfo">More Info</a></p>
+
+</center>
+
+
+
+
+<div>
+    @*<h4>TribalCardDto</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+                @Html.DisplayNameFor(model => model.TribalCardID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TribalCardID)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AccountNumber)
+            </dd>*@
+
+        @Html.HiddenFor(model => model.AccountNumber)
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.PromotionCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PromotionCode)
+            </dd>*@
+
+        @Html.HiddenFor(model => model.PromotionCode)
+
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.CardImage)*@
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.CardImage)*@
+
+            @*<img src="@Url.Content(Model.CardImage)" />*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+ 
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.CardVendor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CardVendor)
+
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOnCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOnCard)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.CardNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CardNumber)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Csc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Csc)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Points)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Points)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Balance)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Balance)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.PurchaseAmount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PurchaseAmount)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.ExpirationOnCard)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ExpirationOnCard)
+            </dd>*@
+
+    </dl>
+</div>
+
+<Center><p>@Html.ActionLink("ConfirmCard", "ConfirmCard", new { accountNumber = Model.AccountNumber })</p></Center>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

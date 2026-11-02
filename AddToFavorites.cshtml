@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "AddToFavorites";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
+
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
+          
+    //The18th.Areas.OneState.OneStateDTOs.CustomerDto browsingCustomer = new The18th.Areas.OneState.OneStateDTOs.CustomerDto();
+    //browsingCustomer.AccountNumber = memberAccountNumber;
+
+    ////Add a favorites object to member region
+    //var memberCustomer = The18th.Areas.MemberShip.Data.MemberManager.GetMyMemberInfo(browsingCustomer.AccountNumber);
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //The18th.Areas.Vendor.VendorDTOs.VendorDto myClient = new The18th.Areas.Vendor.VendorDTOs.VendorDto();
+    //myClient.VendorNumber = vendorNumber.Trim();
+
+    //var ourClient = The18th.Areas.Vendor.Data.VendorManager.GetAVendor(myClient);
+
+
+}
+
+
+<center><h1>Adding to Favorites</h1></center>
+
+<div class="container">
+
+    @*google ads*@
+
+    <div class="page-header">
+        <br />
+
+        <center><p>Developing</p></center>
+
+        <br />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+    </div>
+
+</div>
+

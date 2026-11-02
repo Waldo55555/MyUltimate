@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "CRMConfirmation";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
+
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
+
+
+}
+
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/CustomStyles.css" rel="stylesheet" />
+<link href="~/BackgroundStyles.css" rel="stylesheet" />
+
+
+<div class="">
+    <div id="container" class="clear">
+
+        <center><h3>Confirmation<img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/greencheck.gif" alt="picture" /></h3></center>
+
+            <br />
+
+            <center><h4>Thank You, your membership is complete. Please check your email for log-in details and instructions</h4></center>
+
+            <br />
+
+            <center><h4>We value your participation on the platform and look forward to working with you.</h4></center>
+
+            <div>
+
+                <center><p><a class="btn btn-md btn-primary" href="~/Default.aspx">Return to Home &raquo;</a></p></center>
+
+            </div>
+
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+    </div>
+</div>

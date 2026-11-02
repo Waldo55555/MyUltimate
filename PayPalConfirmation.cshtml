@@ -1,7 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "PayPalConfirmation";
-    Layout = "~/Areas/Support/Views/Shared/_SupportLayoutPage.cshtml";
+    Layout = "~/Areas/TribalCRM/Views/Shared/_TribalLayoutPage.cshtml";
+
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
 
 }
 
