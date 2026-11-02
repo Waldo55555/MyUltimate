@@ -2,7 +2,7 @@
 
 
 
-<%@ OutputCache Duration="3600" VaryByParam="None" %>
+<%--<%@ OutputCache Duration="3600" VaryByParam="None" %>--%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -13,9 +13,11 @@
 <title>Avatar Growers</title>
 <link rel="shortcut icon" type="image/x-icon" href="https://the18thstorage.blob.core.windows.net/the18thcontainer/favicon.ico" />
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
-<%--<link rel="stylesheet" href="../layout/styles/layout.css" type="text/css" />
-<script type="text/javascript" src="../layout/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="../layout/scripts/jquery.ui.min.js"></script>--%>
+    
+<!--@*client side validation in order*@-->
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  
               
 <%: Styles.Render("~/bundles/mycss") %>
 <%: Styles.Render("~/bundles/layout") %>
@@ -91,14 +93,9 @@
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
            <br />
-            <center><p><a href="Meek/RunUp/RunUpAdmin"><span class="glyphicon glyphicon-cloud"></span>&nbsp;Run Up</a></p></center>
-            <center><p>Developer On Duty: Meek Technologies - Copyright &copy; 2011-2022 - All Rights Reserved</p></center>
-            <center><p>Ad World:&nbsp;&nbsp;<a href="AdCompanyInfo.aspx">Advertise With Us</a>&nbsp;||&nbsp;Donations:&nbsp;&nbsp;<a href="/Donations/Donations/DonateFace">Make A Pledge</a></p></center>
-            <center><p><a href="MembershipEntry.aspx">Become A Member</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
-            <%-- <center><p><a href="TrackDonation.aspx">Track My Donations</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>--%>
-            <%--<center><p>Advertise:&nbsp;&nbsp;<a href="mailto:onefarmads@gmail.com">Advertise With Us</a></p></center>--%>
-            <h3><asp:Label ID="loginLabel" Visible="false" runat="server" Text=""></asp:Label></h3>
-            <center><p class="fl_right">WW:<span><asp:Label ID="userCountLabel" runat="server" Text=""></asp:Label></span></p></center>
+             <center><p>Developed By: Meek Tech - Copyright &copy; 2023 - All Rights Reserved</p></center>
+             <center><p>Ad World:&nbsp;&nbsp;<a href="/Ads/Ad/AboutAdvertisements">Advertise</a>&nbsp;|&nbsp;Donations:&nbsp;&nbsp;<a href="/Donations/Donations/DonateFace">Pledge</a></p></center>
+             <center><p>AG Newsletter:&nbsp;&nbsp;<a href="https://avatar-growers.com/newsletter/" target="_blank">Suscribe</a>&nbsp;|&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

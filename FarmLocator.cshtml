@@ -1,0 +1,86 @@
+﻿@model The18th.Areas.Directory.DirectoryDTOs.LocatorDto
+
+@{
+    ViewBag.Title = "FarmLocator";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+}
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../CustomStyles.css" rel="stylesheet">
+<link href="../BackgroundStyles.css" rel="stylesheet">
+
+<h2>Grower Locator</h2>
+<div>
+    <p>
+        <Center><strong><em><Big>Select one of the search types to search by.</Big></em></strong></Center>
+    </p>
+</div>
+@*<br />*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @*<h4>LocatorDto</h4>*@
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        <p>
+            <Center><strong><em><Big>Search for farms.</Big></em></strong></Center>
+        </p>
+    </div>
+   
+    <div class="form-group">
+        @Html.LabelFor(model => model.SearchType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("SearchType", string.Empty)
+            @Html.ValidationMessageFor(model => model.SearchType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+   
+    <hr />
+    <div>
+        <p>
+            <Center><strong><em><Big>Search by Farm Type.</Big></em></strong></Center>
+        </p>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FarmType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("FarmType", string.Empty)
+            @Html.ValidationMessageFor(model => model.FarmType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <hr />
+    <div>
+        <p>
+            <Center><strong><em><Big>Search by location.</Big></em></strong></Center>
+        </p>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Location", string.Empty)
+            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Search" class="btn btn-md btn-primary" />
+        </div>
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+</div>
+}
+
+

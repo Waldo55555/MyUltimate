@@ -23,11 +23,9 @@ namespace The18th
             }
 
 
-            HttpCookie myAdcookie = Request.Cookies["AdvertisementInfo"];
-            string adType = myAdcookie["adType"];
-            string target = myAdcookie["target"];
-            string campType = myAdcookie["campType"];
-            string schedule = myAdcookie["schedule"];
+            HttpCookie myAdcookie = Request.Cookies["AdminAdInfo"];
+            string accountNumber = myAdcookie["accountNum"];
+            string company = myAdcookie["company"];
 
             string _companyName = Request.QueryString["companyName"];
             string _phone = Request.QueryString["phone"];
@@ -48,11 +46,10 @@ namespace The18th
         protected void uploadButton_Click(object sender, EventArgs e)
         {
 
-            HttpCookie myAdcookie = Request.Cookies["AdvertisementInfo"];
-            string adType = myAdcookie["adType"];
-            string target = myAdcookie["target"];
-            string campType = myAdcookie["campType"];
-            string schedule = myAdcookie["schedule"];
+            HttpCookie myAdcookie = Request.Cookies["AdminAdInfo"];
+            string accountNumber = myAdcookie["accountNum"];
+            string company = myAdcookie["company"];
+
 
             //New
             companyLabel.Text = ViewState["ExistingCompanyName"].ToString();
@@ -77,17 +74,17 @@ namespace The18th
                 BinaryReader binaryReader = new BinaryReader(stream);
                 byte[] bytes = binaryReader.ReadBytes((int)stream.Length);
 
-                //The18th.Areas.Ads.AdDTOs.SlideDto mySlide = new The18th.Areas.Ads.AdDTOs.SlideDto();
-                //mySlide.SlideID = Guid.NewGuid();
-                //mySlide.FileName = "https://the18thstorage.blob.core.windows.net/slides/" + bytes;
-                //mySlide.ImageData = bytes;
+                The18th.Areas.Ads.AdDTOs.SlideDto mySlide = new The18th.Areas.Ads.AdDTOs.SlideDto();
+                mySlide.SlideID = Guid.NewGuid();
+                mySlide.AccountNumber = accountNumber;
+                mySlide.CompanyName = companyLabel.Text;
+                mySlide.FileName = "https://the18thstorage.blob.core.windows.net/slides/" + bytes;
+                mySlide.ImageData = bytes;
 
-                //New.......working on End
                 try
                 {
 
-
-                    //The18th.Areas.Ads.Data.AdManager.InsertSlide(mySlide);
+                    The18th.Areas.Ads.Data.AdManager.InsertSlide(mySlide);
 
                 }
 
@@ -99,14 +96,15 @@ namespace The18th
 
                 }
 
-
-                //Response.Redirect("~/CampaignConfirmation.aspx");
-
             }
 
             //Paypal.....here
 
-            Response.Redirect("~/AdminAdConfirmation.aspx");
+            Response.Redirect("~/AdminAdConfirmation.aspx?companyName=" + companyLabel.Text
+             + "&phone=" + phoneLabel.Text
+             + "&email=" + emailLabel.Text
+            );
+
 
 
         }
@@ -122,7 +120,6 @@ namespace The18th
 
 
         }
-
 
     }
 }

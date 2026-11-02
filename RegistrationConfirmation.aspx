@@ -1,7 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrationConfirmation.aspx.cs" Inherits="The18th.RegistrationConfirmation" %>
 
-
-<%@ OutputCache Duration="3600" VaryByParam="None" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -12,9 +10,11 @@
 <title>Avatar Growers</title>
 <link rel="shortcut icon" type="image/x-icon" href="https://the18thstorage.blob.core.windows.net/the18thcontainer/favicon.ico" />
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
-<%--<link rel="stylesheet" href="../layout/styles/layout.css" type="text/css" />
-<script type="text/javascript" src="../layout/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="../layout/scripts/jquery.ui.min.js"></script>--%>
+    
+<!--@*client side validation in order*@-->
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  
               
 <%: Styles.Render("~/bundles/mycss") %>
 <%: Styles.Render("~/bundles/layout") %>
@@ -31,7 +31,7 @@
                 </button>
                       <div class="collapse navbar-collapse navHeaderCollapse">
                          <ul class="nav navbar-nav navbar-right">
-                               <li class="dropdown">
+                              <%-- <li class="dropdown">
                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-globe"></span>International</a>
 
                                    <ul class="dropdown-menu">
@@ -44,14 +44,13 @@
                     
                                    </ul>
                              
-                               </li>
+                               </li>--%>
                                                            
-                               <li><a href="https://globalagriculture.org" target="_blank"><span class="glyphicon glyphicon-map-marker"></span>Global News</a></li>
-                                                                 
-                               <li><a href="Account/Account/AnonymousLogIn"><span class="glyphicon glyphicon-home"></span>Visitor Sign-In</a></li>
+                                  <li><a href="https://www.ghana.gov.gh/" target="_blank"><span class="glyphicon glyphicon-globe"></span>Diaspora Connect</a></li>
 
-                               <li><a href="Account/Account/AnonymousRegister"><span class="glyphicon glyphicon-book"></span>Visitor Register</a></li>
-
+                                  <li><a href="https://globalagriculture.org" target="_blank"><span class="glyphicon glyphicon-map-marker"></span>Diaspora News</a></li>
+  
+                                  <li><a href="Welcome.aspx"><span class="glyphicon glyphicon-home"></span>Welcome</a></li>
                              <%--  <li><a href="VisitorSignIn.aspx"><span class="glyphicon glyphicon-home"></span>Visitor Sign-In</a></li>--%>
 
                           </ul>
@@ -77,7 +76,7 @@
 
                     <asp:Label ID="resultLabel" runat="server" Text="" Visible="false"></asp:Label>
 
-                    <asp:Button ID="returnButton" runat="server" Text="Return" CssClass="btn btn-md btn-primary" OnClick="returnButton_Click" UseSubmitBehavior="false" OnClientClick="this.disable= 'true'; this.value= 'Working...';"/>
+                    <center><asp:Button ID="returnButton" runat="server" Text="Return" CssClass="btn btn-md btn-primary" OnClick="returnButton_Click" UseSubmitBehavior="false" OnClientClick="this.disable= 'true'; this.value= 'Working...';"/></center>
 
                    <br /><br /><br /><br />
 
@@ -93,12 +92,9 @@
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
            <br />
-            <center><p><a href="Meek/RunUp/RunUpAdmin"><span class="glyphicon glyphicon-cloud"></span>&nbsp;Run Up</a></p></center>
-            <center><p>Developer On Duty: Meek Technologies - Copyright &copy; 2011-2022 - All Rights Reserved</p></center>
-            <center><p>Ad World:&nbsp;&nbsp;<a href="AdCompanyInfo.aspx">Advertise With Us</a>&nbsp;||&nbsp;Donations:&nbsp;&nbsp;<a href="/Donations/Donations/DonateFace">Make A Pledge</a></p></center>
-            <center><p><a href="MembershipEntry.aspx">Become A Member</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
-            <%-- <center><p><a href="TrackDonation.aspx">Track My Donations</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>--%>
-            <%--<center><p>Advertise:&nbsp;&nbsp;<a href="mailto:onefarmads@gmail.com">Advertise With Us</a></p></center>--%>
+            <center><p>Developed By: Meek Tech - Copyright &copy; 2023 - All Rights Reserved</p></center>
+            <center><p>Ad World:&nbsp;&nbsp;<a href="/Ads/Ad/AboutAdvertisements">Advertise</a>&nbsp;|&nbsp;Donations:&nbsp;&nbsp;<a href="/Donations/Donations/DonateFace">Pledge</a></p></center>
+            <center><p><a href="/MemberShip/MemberDash/MembershipSignIn"><span class="glyphicon glyphicon-home"></span>Member Sign-In</a>&nbsp;|&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
             <h3><asp:Label ID="loginLabel" Visible="false" runat="server" Text=""></asp:Label></h3>
             <center><p class="fl_right">WW:<span><asp:Label ID="userCountLabel" runat="server" Text=""></asp:Label></span></p></center>
         </div>

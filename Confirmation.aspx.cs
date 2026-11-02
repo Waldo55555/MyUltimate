@@ -12,18 +12,12 @@ namespace The18th
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //////2
-            HttpCookie memberCookie = Request.Cookies["MemberCookieInfo"];
-            string membershipNumber = memberCookie["memberNumber"];
-            string accountNumber = memberCookie["accountNumber"];
+            string myInvitationNumber = Request.QueryString["accountNumber"];
 
-            var acctNumber = accountNumber.Trim();
+            var inviteNumber = myInvitationNumber.Trim();
 
-            ViewState.Add("ExistingAccountNum", acctNumber);
 
-            var memNumber = membershipNumber.Trim();
-
-            ViewState.Add("ExistingMembershipNum", memNumber);
+            ViewState.Add("ExistingAccountNum", inviteNumber);
 
 
         }
@@ -50,7 +44,7 @@ namespace The18th
             //New
             var nameBack = formatCardName(ourMembership);
 
-            The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto cardFeatures = new The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto();
+            The18th.Areas.MemberShip.MemberShipDTOs.TribalCardDto cardFeatures = new The18th.Areas.MemberShip.MemberShipDTOs.TribalCardDto();
             cardFeatures.TribalCardID = Guid.NewGuid();
             cardFeatures.MembershipNumber = ourMembership.MembershipNumber;
             cardFeatures.AccountNumber = ourMembership.AccountNumber;
@@ -86,7 +80,7 @@ namespace The18th
 
 
                 //
-                The18th.Areas.TribalCRM.Data.TribalCardManager.AddCard(cardFeatures);
+                //The18th.Areas.TribalCRM.Data.TribalCardManager.AddCard(cardFeatures);
             }
 
 
@@ -118,7 +112,7 @@ namespace The18th
             //New
             var nameBack = formatCardName(ourMembership);
 
-            The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto cardFeatures = new The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto();
+            The18th.Areas.MemberShip.MemberShipDTOs.TribalCardDto cardFeatures = new The18th.Areas.MemberShip.MemberShipDTOs.TribalCardDto();
             cardFeatures.TribalCardID = Guid.NewGuid();
             cardFeatures.MembershipNumber = ourMembership.MembershipNumber;
             cardFeatures.AccountNumber = ourMembership.AccountNumber;
@@ -153,7 +147,7 @@ namespace The18th
 
 
                 //
-                The18th.Areas.TribalCRM.Data.TribalCardManager.AddCard(cardFeatures);
+                //The18th.Areas.TribalCRM.Data.TribalCardManager.AddCard(cardFeatures);
             }
 
 
@@ -168,7 +162,6 @@ namespace The18th
 
             //Start here to finish automated membership
             Response.Redirect("/TribalCRM/Tribal/CRMConfirmation?trueBill38=" + cardFeatures.AccountNumber);
-
 
 
         }

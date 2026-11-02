@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "GrowerDetail";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    ////////
+    HttpCookie myCookie = Request.Cookies["GrowerCookie"];
+    var currentGrowerNumber = myCookie["growerNumber"];
+
+    The18th.Areas.Growers.GrowersDTOs.GrowerLocationInfoDto myProfile = new The18th.Areas.Growers.GrowersDTOs.GrowerLocationInfoDto();
+    myProfile.GrowerNumber = currentGrowerNumber;
+      
+    var pulledFarmProfile = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProfile(myProfile.GrowerNumber);
+
+    The18th.Areas.Growers.GrowersDTOs.GrowerLocationInfoDto mySearch = new The18th.Areas.Growers.GrowersDTOs.GrowerLocationInfoDto();
+    mySearch.GrowerNumber = currentGrowerNumber;
+       
+    var pulledFarmLocation = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationLocation(mySearch.GrowerNumber);
+
+    //
+
+    if (mySearch.GrowerNumber == "")
+    {
+        //Response.Redirect("SearchNotFound.cshtml");
+        //Response.Redirect("SearchNotFound.cshtml?location=" + currentLocation);
+    }
+      
+    var pulledFarmMarketInfo = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationMarket(mySearch.GrowerNumber);
+}
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../CustomStyles.css" rel="stylesheet">
+<link href="../BackgroundStyles.css" rel="stylesheet">
+
+<div class="container">
+
+    <div class="page-header">
+
+        <div class="container">
+            <div class="row">
+                <Center><h2>Farm Detail</h2></Center>
+                @*<Center><p>Check out some of these details for @pulledDetail.FarmName.</p></Center>*@
+                <Center><p>Check out some of these details for @pulledFarmLocation.GrowerName.</p></Center>
+            </div>
+            <br />
+        </div>
+        <div class="img-responsive">
+            <div class="row">
+
+                @*<center><img src="@pulledFarm.FarmImage" class="col-md-4 col-md-offset-4 img-responsive" width="100" height="100" alt="photo not found" /></center>*@
+
+            </div>
+            <center>
+                <div id="portfolio">
+                    <center>
+                        <p>Business Name: @pulledFarmLocation.GrowerName</p>
+                        <p>Address: @pulledFarmLocation.FullAddress</p>
+                        <p>Location: @pulledFarmLocation.Location</p>
+                        <p>Phone: @pulledFarmProfile.GrowerPhone</p>
+                        <p><a href="@pulledFarmMarketInfo.WebAddress">Farmers Market Info</a></p>
+                    </center>
+                </div>
+            </center><br />
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br />
+

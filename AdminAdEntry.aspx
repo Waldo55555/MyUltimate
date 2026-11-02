@@ -12,11 +12,11 @@
 <link rel="shortcut icon" type="image/x-icon" href="https://the18thstorage.blob.core.windows.net/the18thcontainer/favicon.ico" />
 
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
-
-
-<%--<link rel="stylesheet" href="../layout/styles/layout.css" type="text/css" />
-<script type="text/javascript" src="../layout/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="../layout/scripts/jquery.ui.min.js"></script>--%>
+    
+<!--@*client side validation in order*@-->
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  
               
 <%: Styles.Render("~/bundles/mycss") %>
 <%: Styles.Render("~/bundles/layout") %>
@@ -76,21 +76,18 @@
                 </asp:DropDownList><br />
             </div>
 
-             <center><asp:Label ID="campaignMessageLabel" runat="server" Font-Size="Medium" ForeColor="Green" Text="Estimated Total: $"></asp:Label>&nbsp;<asp:Label    ID="campaignTotalLabel" Font-Size="Medium" runat="server" Text=""></asp:Label></center>
+             <center><asp:Label ID="campaignMessageLabel" runat="server" Font-Size="Medium" ForeColor="Green" Text="Estimated Total: $"></asp:Label>&nbsp;<asp:Label ID="campaignTotalLabel" Font-Size="Medium" runat="server" Text=""></asp:Label></center>
 
             <br /><br />
-           
-            <div class="form-group">
-                <label>Select clients target location.</label>
-                <asp:DropDownList ID="targetLocationDropDownList" runat="server" CssClass="form-control">
+                                                     
+          <%--   <div class="form-group">
+                <label>Please select your location.&nbsp;<input type="image" height="15" width="15" src="https://the18thstorage.blob.core.windows.net/the18thcontainer/infoPic.png" value="Crop LookUp" onclick="window.open('https://avatargrowers.com/KnowledgeDocs/Location.docx', '_blank', 'height=400, width=400, top=400,left=400')" /></label>
+                <asp:DropDownList ID="targetLocationDropDownList" runat="server" DataTextField="CountyName" DataValueField="State" CssClass="form-control">
                 <asp:ListItem Text="Select Target Location..." Value="Select Target Location..." Selected="True" Enabled="true" />
-                <asp:ListItem Text="East Africa" Value="East Africa" />
-                <asp:ListItem Text="West Africa" Value="West Africa" />
-                <asp:ListItem Text="South East U.S" Value="South East U.S" />
-                <asp:ListItem Text="North East U.S" Value="North East U.S" />
                 </asp:DropDownList><br />
-            </div>
-                                 
+            </div>--%>
+
+
             <div class="form-group">
                 <label>Select clients ad material.</label>
                 <asp:CheckBox ID="designCheckBox" placeholder="I Have My Own Material" runat="server" CssClass="form-control" /><br />
@@ -102,18 +99,26 @@
             <div class="form-group">
             <label>Enter clients company name.</label>
             <asp:TextBox ID="companyNameTextBox" placeholder="Company Name" runat="server" CssClass="form-control"></asp:TextBox><br />
+            <asp:RequiredFieldValidator ID="companyNameValidator" runat="server" ForeColor="Red" ControlToValidate="companyNameTextBox" ErrorMessage="Required"></asp:RequiredFieldValidator>
             </div>
            
             <div class="form-group">
                 <label>Enter clients company phone .</label>
                  <asp:TextBox ID="companyPhoneTextBox" placeholder="Company Phone" runat="server" CssClass="form-control"></asp:TextBox><br />
+                 <asp:RequiredFieldValidator ID="phoneValidator" runat="server" ForeColor="Red" ControlToValidate="companyPhoneTextBox" ErrorMessage="Required"></asp:RequiredFieldValidator>
             </div>
  
            <div class="form-group">
                 <label>Enter clients company email.</label>
                  <asp:TextBox ID="companyEmailTextBox" placeholder="example@email" runat="server" CssClass="form-control"></asp:TextBox><br />
-            </div>
+           </div>
 
+            <div class="form-group">
+            <label>Please verify email.</label>
+            <asp:TextBox ID="verifyEmailTextBox" placeholder="Verify Your Email"  runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox><br />
+            <asp:RequiredFieldValidator ID="emailFieldValidator" runat="server" ForeColor="Red" ControlToValidate="companyEmailTextBox" ErrorMessage="Required"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="verifyEmail" runat="server" ErrorMessage="Emails Do Not Match" ControlToValidate="verifyEmailTextBox" ControlToCompare="companyEmailTextBox" Operator="Equal" Type="String" ForeColor="Red"></asp:CompareValidator>
+            </div>
 
             <div class="form-group">
                 <label>Enter clients Campaign Type.</label>
@@ -152,19 +157,12 @@
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
            <br />
-            <center><p><a href="Meek/RunUp/RunUpAdmin"><span class="glyphicon glyphicon-cloud"></span>&nbsp;Run Up</a></p></center>
-            <center><p>Developer On Duty: Meek Technologies - Copyright &copy; 2011-2022 - All Rights Reserved</p></center>
-            <center><p>Ad World:&nbsp;&nbsp;<a href="AdCompanyInfo.aspx">Advertise</a>&nbsp;||&nbsp;Donations:&nbsp;&nbsp;<a href="/Donations/Donations/DonateFace">Pledge</a></p></center>
-            <center><p><a href="MembershipEntry.aspx">Become A Member</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
-            <%-- <center><p><a href="TrackDonation.aspx">Track My Donations</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>--%>
-            <%--<center><p>Advertise:&nbsp;&nbsp;<a href="mailto:onefarmads@gmail.com">Advertise With Us</a></p></center>--%>
-          <%--  <h3><asp:Label ID="loginLabel" Visible="false" runat="server" Text=""></asp:Label></h3>--%>
-          <%--  <center><p class="fl_right">WW:<span><asp:Label ID="userCountLabel" runat="server" Text=""></asp:Label></span></p></center>--%>
-        </div>
+             <center><p>Developed By: Meek Tech - Copyright &copy; 2023 - All Rights Reserved</p></center>
+             <center><p>Ad World:&nbsp;&nbsp;<a href="/Ads/Ad/AboutAdvertisements">Advertise</a>&nbsp;|&nbsp;Donations:&nbsp;&nbsp;<a href="/Donations/Donations/DonateFace">Pledge</a></p></center>
+             <center><p>AG Newsletter:&nbsp;&nbsp;<a href="https://avatar-growers.com/newsletter/" target="_blank">Suscribe</a>&nbsp;|&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
+         </div>
     </div>
-  <%--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>--%>
-    <br /><br /><br />
+     <br /><br /><br />
 
   <%: Scripts.Render("~/bundles/myscripts") %>
 

@@ -21,12 +21,12 @@
 
 <%: Styles.Render("~/bundles/mycss") %>
 <%: Styles.Render("~/bundles/layout") %>
-
+       
 </head>
 <body>
      <div class="navbar navbar-default navbar-fixed-top"> 
             <div class="container-fluid">
-                <a href="#" class="navbar-brand">Avatar Growers</a>
+                <a href="#" class="navbar-brand">Avatar Growers(Beta)</a>
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -34,33 +34,13 @@
                 </button>
                       <div class="collapse navbar-collapse navHeaderCollapse">
                             <ul class="nav navbar-nav navbar-right">
-                               <li class="dropdown">
-                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-globe"></span>International</a>
+                                                         
+                                <li><a href="Account/Account/MemberSignUp"><span class="glyphicon glyphicon-log-in"></span>Member Sign-Up</a></li>
 
-                                   <ul class="dropdown-menu">
+                                <li><a href="Welcome.aspx"><span class="glyphicon glyphicon-home"></span>Welcome</a></li>
 
-                                    <li><a href="https://www.mfdp.gov.lr/" target="_blank">Liberia</a></li>
-
-                                    <li><a href="https://au.int/en/arbe" target="_blank">Ethiopia</a></li>
-
-                                    <li><a href="https://www.ghana.gov.gh/" target="_blank">Ghana</a></li>
-                    
-                                   </ul>
-                             
-                               </li>
-                                                           
-                               <li><a href="https://globalagriculture.org" target="_blank"><span class="glyphicon glyphicon-map-marker"></span>Global News</a></li>
-                                                                 
-                               <li><a href="Account/Account/AnonymousLogIn"><span class="glyphicon glyphicon-home"></span>Visitor Sign-In</a></li>
-
-                               <li><a href="Account/Account/AnonymousRegister"><span class="glyphicon glyphicon-book"></span>Visitor Register</a></li>
-
-                             <%--  <li><a href="VisitorSignIn.aspx"><span class="glyphicon glyphicon-home"></span>Visitor Sign-In</a></li>--%>
-
-                          </ul>
-
+                             </ul>
                       </div>
-
             </div>
         </div>
         <form id="form1" runat="server">
@@ -74,8 +54,11 @@
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
         <br />
-        <center><p>Developed By: Meek Tech - Copyright &copy; 2023 - All Rights Reserved</p></center>
-        <center><p>Contact Us Today!&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:the18th_helpdesk@yahoo.com">Information</a></p></center>
+        <center><p>Developer On Duty: Waldo - Copyright &copy; 2023 - All Rights Reserved</p></center>
+       <%-- <center><p>Ad World:&nbsp;&nbsp;<a href="/Knowledge/Craddle/AboutAdvertisements">Advertise</a>&nbsp;|&nbsp;Donations:&nbsp;&nbsp;<a href="/Donations/Donations/DonateFace">Pledge</a></p></center>--%>
+        <center><p>AG Newsletter:&nbsp;&nbsp;<a href="https://avatar-growers.com/newsletter/" target="_blank">Suscribe</a>&nbsp;|&nbsp;<a href="Meek/MeekHome/AboutUs" target="_blank">About Us</a></p></center>
+      
+        <h3><asp:Label ID="loginLabel" Visible="false" runat="server" Text=""></asp:Label></h3>
         </div>
     </div>
     <br /><br /><br />
@@ -83,7 +66,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <br /><br /><br />
-
    <%: Scripts.Render("~/bundles/myscripts") %>
 
 </body>

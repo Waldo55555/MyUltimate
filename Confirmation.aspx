@@ -37,29 +37,12 @@
                 </button>
                       <div class="collapse navbar-collapse navHeaderCollapse">
                            <ul class="nav navbar-nav navbar-right">
-                               <li class="dropdown">
-                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-globe"></span>International</a>
+                              <li><a href="Account/Account/MembershipSignIn"><span class="glyphicon glyphicon-log-in"></span>Member Sign-In</a></li>
 
-                                   <ul class="dropdown-menu">
+                              <li><a href="Account/Account/MemberSignUp"><span class="glyphicon glyphicon-log-in"></span>Member Sign-Up</a></li>
 
-                                    <li><a href="https://www.mfdp.gov.lr/" target="_blank">Liberia</a></li>
-
-                                    <li><a href="https://au.int/en/arbe" target="_blank">Ethiopia</a></li>
-
-                                    <li><a href="https://www.ghana.gov.gh/" target="_blank">Ghana</a></li>
-                    
-                                   </ul>
-                             
-                               </li>
-                                                           
-                               <li><a href="https://globalagriculture.org" target="_blank"><span class="glyphicon glyphicon-map-marker"></span>Global News</a></li>
-                                                                 
-                               <li><a href="Account/Account/AnonymousLogIn"><span class="glyphicon glyphicon-home"></span>Visitor Sign-In</a></li>
-
-                               <li><a href="Account/Account/AnonymousRegister"><span class="glyphicon glyphicon-book"></span>Visitor Register</a></li>
-
-                             <%--  <li><a href="VisitorSignIn.aspx"><span class="glyphicon glyphicon-home"></span>Visitor Sign-In</a></li>--%>
-
+                              <li><a href="Account/Account/AnonymousLogIn"><span class="glyphicon glyphicon-leaf"></span>Growers Market</a></li>
+                                       
                           </ul>
                       </div>
             </div>
@@ -107,17 +90,11 @@
         
     <!---------Footer----->
     <div class="navbar navbar-default navbar-fixed-bottom">
-
         <div class="container">
-
             <br />
-
             <center><p>Contact Us Today!&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:the18th_helpdesk@yahoo.com">Member Service</a></p></center>
-
             <center><p>Developed By: Meek Tech - Copyright &copy; 2023 - All Rights Reserved</p></center>
-
         </div>
-
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

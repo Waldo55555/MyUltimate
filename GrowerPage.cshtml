@@ -1,0 +1,129 @@
+﻿@model The18th.Areas.Growers.GrowersDTOs.GrowerPageDto
+
+@{
+    ViewBag.Title = "GrowerPage";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    HttpCookie myCookie = Request.Cookies["GrowerCookie"];
+    var currentGrowerNumber = myCookie["growerNumber"];
+
+    var crop = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationCrops(currentGrowerNumber);
+
+    var growerProfile = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProfile(currentGrowerNumber);
+
+    var growerLocation = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationLocation(currentGrowerNumber);
+
+    var growerMarketInfo = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationMarket(currentGrowerNumber);
+
+    var growerPhoto = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProfilePhoto(currentGrowerNumber);
+
+  
+}
+
+
+<div class="container">
+
+    <div class="page-header">
+
+        <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/CustomStyles.css" rel="stylesheet">
+        <link href="~/BackgroundStyles.css" rel="stylesheet">
+
+        <Center><h2>Grower Information</h2></Center>
+
+        <br />
+
+        <center>
+            <div>
+                <div class="img-responsive">
+                    <center><img src="data:Image/jpg;base64,@(Html.Raw(Convert.ToBase64String(growerPhoto.PhotoData)))" class="img-fluid img-circle" width="80" height="80" alt="farm photo" /></center><br />
+                    @*<center><em><strong>@Html.ActionLink("Facebook Group", "GoToFacebook", new { NopassOoomph = growerProfile.GrowerNumber })</strong></em></center><br />*@
+                    @*<center><em><strong><a href="@growerConnect.FanbaseUrl" target="_blank"><span class="glyphicon link-underline-info"></span>My Fanbase</a></strong></em></center><br />*@
+                    <center><em><strong>Grower Name:</strong></em>@growerProfile.GrowerName</center><br />
+                    <center><em><strong>Grower Type:</strong></em> @growerProfile.GrowerType</center><br />
+                    @*<center><em><strong>County:</strong></em> @growerLocation.County</center>*@
+                </div>
+
+                <center><p><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/busfam.png" width="60" height="60" alt="market" /></p></center>
+
+                <center><p><a class="" href="#">Grower Details &raquo;</a></p></center>
+            </div>
+        </center>
+
+        @*New Work*@
+
+        @*<table class="table table-hover table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">*@
+        <table class="table table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>Market Days</th>
+                    <th>Market Hours</th>
+                    <th>Crops</th>
+                    <th>Land Used</th>
+                    @*<th>&nbsp;</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="light">
+                    <td>@growerMarketInfo.MarketDays</td>
+                    <td>@growerMarketInfo.MarketHours</td>
+                    <td>@growerMarketInfo.CropTypes</td>
+                    <td>@growerMarketInfo.LandUtilizationPercentage</td>
+                    @*<td><em><strong>@Html.ActionLink("Edit Market Info", "EditMarketInfo", new { growerNumber = growerProfile.GrowerNumber })</strong></em></td>*@
+                    @*<td><em><strong>@Html.ActionLink("Open", "EditMarketInfo", new { growerNumber = growerProfile.GrowerNumber })</strong></em></td>*@
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-hover table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>Grower Type</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Rep</th>
+                    @*<th>&nbsp;</th>*@
+                    @*<th>Edit</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="light">
+                    <td><em><strong>@growerProfile.GrowerType</strong></em></td>
+
+                    <td>@growerProfile.GrowerName</td>
+                    <td>@growerProfile.GrowerEmail</td>
+                    <td>@growerProfile.Representative</td>
+                    @*<td><em><strong>@Html.ActionLink("Edit Profile Info", "EditProfileInfo", new { growerNumber = growerProfile.GrowerNumber })</strong></em></td>*@
+                    @*<td><em><strong>@Html.ActionLink("Open", "EditProfileInfo", new { growerNumber = growerProfile.GrowerNumber })</strong></em></td>*@
+                </tr>
+            </tbody>
+        </table>
+
+        @*New Work End*@
+
+
+        <div class="img-responsive">
+            <Center><h3><em><strong>Crops</strong></em></h3></Center>
+            <div class="row">
+                <div class="">@*col-md-4 col-xs-12*@
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<center><img src="@Url.Content(crop.CropImage)" /></center>
+                    <center><p class="title"><a href="#">@crop.CropName</a></p></center>
+                    <center><p><em><strong>Description:</strong></em> @crop.FullDescription</p></center>
+                    <center><p><em><strong>Price:</strong></em> $@crop.PricePerItem<span>Per Pound</span></p></center>
+                </div>
+                <center><p><em><strong>@ViewBag.EmptyCropMessage</strong></em></p></center>
+                <center><em><strong>@Html.ActionLink("Go To Market", "CropGroup", new { NopassOoomph = growerProfile.GrowerNumber })</strong></em></center><br />
+            </div>
+        </div>
+        <br />
+        <center><p><a href="/Welcome.aspx">Return to List &raquo;</a></p></center>
+
+        <br /><br />
+        @*<center><p><a class="btn btn-md btn-primary" href="~/Default.aspx">Return to Home &raquo;</a></p></center>*@
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        @*<br /><br /><br /><br /><br />*@
+
+    </div>
+
+</div>
+
+

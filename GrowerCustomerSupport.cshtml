@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "GrowerCustomerSupport";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    HttpCookie myCookie = Request.Cookies["GrowerCookie"];
+    var currentGrowerNumber = myCookie["growerNumber"];
+
+   
+    ////......IMicrosoftDynamics
+
+}
+
+<div class="container">
+
+    <div class="page-header">
+        <br /><br />
+        <h1>Customer Service</h1>
+        <p class="lead">Interact With A Rep</p>
+    </div>
+    <form>
+
+
+        @*<iframe width="280" height="490" src="https://apps.powerapps.com/play/e/561aca18-b949-e9f4-aa01-01eadcc73d04/a/1654a395-d529-4c16-b0d6-1fe768bf70fd?tenantId=28e1f304-d7e6-420c-b6c0-35e730b71ca3&hint=60d5d050-e928-43bd-808a-75cfc5f8a69d&sourcetime=1701080379547" frameborder="0" allowfullscreen></iframe>*@
+
+
+        <div class="form-group-row">
+            <label for="repNameTextBox" class="col-sm-2 form-control-label">Representative Name</label>
+            <div class="">
+                <input type="text" class="form-control" id="repNameTextBox" placeholder="Assigning A Rep..." />
+            </div>
+        </div>
+
+        <br />
+
+
+        <fieldset>
+
+            <label for="dicussionTextBox" class="form-control-label">Discussion</label>
+            <textarea class="form-control" rows="5">waiting on rep......</textarea>
+            <small class="text-muted">
+                Discussion.
+            </small>
+        </fieldset>
+
+        <br />
+
+        <p><a class="btn btn-lg btn-primary" href="#">Interact</a></p>
+
+        <br /><br /><br />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    </form>
+
+    <br />
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+</div>
+
+
