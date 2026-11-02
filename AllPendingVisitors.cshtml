@@ -1,0 +1,83 @@
+﻿@model IEnumerable<The18th.Areas.Account.AccountDTOs.AnonymousRegisterDto>
+
+@{
+    ViewBag.Title = "AllPendingVisitors";
+    Layout = "~/Areas/Account/Views/Shared/_AnonymousMemberLayoutPage.cshtml";
+}
+
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/CustomStyles.css" rel="stylesheet">
+<link href="~/BackgroundStyles.css" rel="stylesheet">
+
+<h2>All Pending Visitors</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.AnonymousRegisterID)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.AnonymousRegisterID)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+
+                <center>@Html.ActionLink("Send LogIn", "SendLogIn", new { registerID = item.AnonymousRegisterID })</center>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<center><p><a class="btn btn-md btn-primary" href="~/Meek/RunUp/RunUpAdmin">Return &raquo;</a></p></center>
+<br />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<br />
+<br />
+<br />
+@*<br />
+    <br />
+    <br />
+    <br />
+    <br />*@

@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "MembershipNotFound";
+    Layout = "~/Areas/Account/Views/Shared/_AnonymousMemberLayoutPage.cshtml";
+
+
+    HttpCookie myCookie = Request.Cookies["travelCookie"];
+    var pulledSession = myCookie["sessNumber"];
+
+}
+
+
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../CustomStyles.css" rel="stylesheet">
+<link href="../BackgroundStyles.css" rel="stylesheet">
+
+<div class="container">
+
+    <div class="page-header">
+        <br /><br /><br />
+        <h1><Center>Membership not found</Center></h1>
+        <h4><Center>@ViewBag.SearchMessage</Center></h4>
+        <br />
+        <h4><Center>@ViewBag.SearchMessage2</Center></h4>
+        <!--only use view in relative link-->
+        <center><p><a class="btn btn-md btn-primary" href="~/Default.aspx">Return &raquo;</a></p></center>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+    </div>
+
+
+</div>
+

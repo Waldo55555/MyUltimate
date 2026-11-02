@@ -1,0 +1,239 @@
+﻿@model The18th.Areas.GrowersDash.GrowerDashDTOs.GrowerDashDto
+
+@{
+    ViewBag.Title = "GrowerDash";
+    Layout = "~/Areas/GrowersDash/Views/Shared/_GrowerDashLayoutPage.cshtml";
+     
+    //.....2
+    HttpCookie currentMemberCookie = Request.Cookies["MemberCookie"];
+    var currentMemberNumber = currentMemberCookie["membershipNumber"];
+
+
+    string growerNumber = "1";
+
+    var crop = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationCrop(growerNumber);
+
+    var growerProfile = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationGrowerProfile(growerNumber);
+
+    var growerLocation = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationLocation(growerNumber);
+
+    var growerMarketInfo = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationMarket(growerNumber);
+
+    var growerPhoto = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationProfilePhoto(growerNumber);
+
+    //New Features
+
+    //Evaluation
+    var environment = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationEnvironment(growerNumber);
+
+    var performance = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationPerformance(growerNumber);
+
+    var projections = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationProjection(growerNumber);
+
+    var germSchedule = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationGermSchedule(growerNumber);
+
+    var growSchedule = The18th.Areas.GrowersDash.Data.GrowerDashEvaluationManager.GetEvaluationGrowSchedule(growerNumber);
+
+}
+
+<div id="container" class="clear">
+    <div id="content">
+        <p>Manage your growing activities.</p>
+        <div id="comments">
+            @*<h2>Comments</h2>*@
+        </div>
+        @*<h2>Write A Comment</h2>*@
+        <div id="respond">
+            @*for proper spacing*@
+            <h4>Grower Information</h4>
+            <table class="table table-hover table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Grower Type</th>
+                        <th>Grower Name</th>
+                        <th>Grower Email</th>
+                        <th>Representative</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="light">
+                        <td><em><strong>@growerProfile.GrowerType</strong></em></td>
+                        <td>@growerProfile.GrowerName</td>
+                        <td>@growerProfile.GrowerEmail</td>
+                        <td>@growerProfile.Representative</td>
+                        <td><em><strong>@Html.ActionLink("Edit Profile Info", "EditProfileInfo", new { growerNumber = growerProfile.GrowerNumber })</strong></em></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Market Information</h4>
+            <table class="table table-hover table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Market Days</th>
+                        <th>Market Hours</th>
+                        <th>Focused Crop</th> @*Crop Types*@
+                        <th>Enviro Utilization</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="light">
+                        <td>@growerMarketInfo.MarketDays</td>
+                        <td>@growerMarketInfo.MarketHours</td>
+                        <td>@crop.CropName</td> Not with this group
+                        <td>@growerMarketInfo.LandUtilizationPercentage</td>
+                        <td><em><strong>@Html.ActionLink("Edit Market Info", "EditMarketInfo", new { growerNumber = growerProfile.GrowerNumber })</strong></em></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            @*<table class="table table-hover table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">
+                    <thead>
+                        <tr>
+                            <th>Market Information</th>
+                            <th>Profile</th>
+                            <th>Focus Crop</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="light">
+                            <td><strong>@Html.ActionLink("Edit Market Info", "EditMarketInfo", new { farmImage = growerPhoto.PhotoData, growerNumber = growerProfile.GrowerNumber })</strong></td>
+                            <td><strong>@Html.ActionLink("Edit Profile Info", "EditProfileInfo", new { farmImage = growerPhoto.PhotoData, growerNumber = growerProfile.GrowerNumber })</strong></td>
+                            <td><strong>@Html.ActionLink("Edit Focus Crop", "EditGrowerCrops", new { farmImage = growerPhoto.PhotoData, growerNumber = growerProfile.GrowerNumber })</strong></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>*@
+
+            <script type="text/javascript" language="javascript">
+
+                function EmptyOut() {
+
+                    $("#displayarea").empty();
+
+                }
+
+            </script>
+
+            <h4>View Grower Activities</h4>
+            <table class="table table-hover table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Content</th>
+                        <th>Crop Projections</th>
+                        <th>Grower Performance</th>
+                        <th>Grow Schedule</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="light">
+                        <td>
+                            @Ajax.ActionLink("See Content", "SeeConnections", new { UrlData = growerNumber, growerNumber }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "displayarea",
+                                InsertionMode = InsertionMode.Replace,
+                                LoadingElementId = "loadSpinner",
+                                OnBegin = "EmptyOut"
+                            })
+                        </td>
+                        <td>
+                            @Ajax.ActionLink("See Crop Projections", "SeeProjections", new { UrlData = growerNumber, growerNumber }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "displayarea",
+                                InsertionMode = InsertionMode.Replace,
+                                LoadingElementId = "loadSpinner",
+                                OnBegin = "EmptyOut"
+                            })
+                        </td>
+                        <td>
+                            @Ajax.ActionLink("See Grower Performance", "SeePerformance", new { UrlData = growerNumber, growerNumber }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "displayarea",
+                                InsertionMode = InsertionMode.Replace,
+                                LoadingElementId = "loadSpinner",
+                                OnBegin = "EmptyOut"
+                            })
+                        </td>
+                        <td>
+                            @Ajax.ActionLink("See Grow Schedule", "SeeGrowSchedule", new { UrlData = growerNumber, growerNumber }, new AjaxOptions()
+                               {
+                                   HttpMethod = "GET",
+                                   UpdateTargetId = "displayarea",
+                                   InsertionMode = InsertionMode.Replace,
+                                   LoadingElementId = "loadSpinner",
+                                   OnBegin = "EmptyOut"
+                               })
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <center><div id="loadSpinner" style="display:none"> <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" height="120" width="120" alt="Loading..." /></div></center>
+            <div id="displayarea"><span></span></div>
+            <p></p>
+        </div>
+    </div>
+    <div id="column">
+        <div class="img-responsive">
+            <center><img src="@growerPhoto.FullImagePath" class="img-fluid img-circle" width="80" height="80" alt="grower photo" /></center><br />
+            <center><em><strong>@Html.ActionLink("Edit Profile Photo", "EditGrowerPhoto", new { farmImage = growerPhoto.PhotoData, growerNumber = growerProfile.GrowerNumber })</strong></em></center><br />
+            <center><em><strong>Grower Name:</strong></em>&nbsp;@growerProfile.GrowerName</center><br />
+            <center><em><strong>Grower Email:</strong></em> @growerProfile.GrowerEmail</center><br />
+            @*<center><em><strong>County:</strong></em> @growerLocation.Location</center>*@
+        </div>
+        <div id="featured">
+        </div>
+        <div class="holder">
+        </div>
+    </div>
+    @*Original*@
+    @*<center><p><a class="" href="#">Enviro Details &raquo;</a></p></center>*@
+
+    @*<center><p>&nbsp;<a class="" href="/GrowersDash/FocusedGrowerDash/MyContent?growerNumber=" + growerNumber>MyFanbase</a></p></center>*@
+
+    <center><p>&nbsp;<a class="" href="~/FanbaseEntry.aspx?growerNumber=" + growerNumber>MyFanbase</a></p></center>
+
+    <hr />
+    <div class="container">
+        <div class="row">
+            @*Proper Spacing*@
+        </div>
+        @*Proper Spacing*@
+        <br />
+    </div>
+    <div class="container-fluid">
+        <ul>
+            <center>
+                @*<div class="col-lg-3 col-xs-12">
+                        <center><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/schoolfam.png" alt="Picture" /></center><br />
+                        <center><p>College Activity</p></center>
+                        <center><p>HBCU Pledges&nbsp;<span class="label label-danger">Needs Work</span></p></center>
+                    </div>*@
+                <div class="col-lg-3 col-xs-12">
+                    <center><img src="/Images/torp.png" alt="Picture" /></center><br />
+                    <center><p><strong>Grow Activity</strong></p></center>
+                    <center><p>Enviro Set-Up&nbsp;<span class="label label-danger">Needs Work</span></p></center>
+                </div>
+                <div class="col-lg-3 col-lg-offset-1 col-xs-12">
+                    <center><img src="/Images/busfam.png" alt="Picture" /></center><br />
+                    <center><p><strong>Business Activity</strong></p></center>
+                    <center><p>M2M Spending&nbsp;<span class="label label-warning">20%</span></p></center>
+                </div>
+                <div class="col-lg-3 col-lg-offset-1 col-xs-12">
+                    <center><img src="/Images/bankfam.png" alt="Picture" /></center><br />
+                    <center><p><strong>Tribal Card Activity</strong></p></center>
+                    <center><p>Card Set-Up and Use&nbsp;<span class="label label-success">Good!</span></p></center>
+                </div>
+            </center>
+        </ul>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        @*<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />*@
+    </div>
+
+    <br />
+    @*<center><p><a href="/AllFocusedGrowers">Return to List &raquo;</a></p></center>*@
+    <center><p><a href="Growers/FocusedMarket/AllFocusedGrowers">Return to List &raquo;</a></p></center>

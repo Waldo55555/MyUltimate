@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Areas/Knowledge/Views/Shared/_ContentLayoutPage.cshtml";
+
+    var myBSNData = The18th.Areas.Knowledge.Data.MyContentManager.GetBSNNews();
+
+    var bsnPull = from p in myBSNData
+                  where p.NewsOutlet == "Black Star Network"
+                  select p;
+    var myBsnList = new List<The18th.Areas.Knowledge.ContentDTOs.NewsDto>(bsnPull);
+
+    //////////////////////////////////////
+
+    var myAFDCData = The18th.Areas.Knowledge.Data.MyContentManager.GetAFDCNews();
+
+    var afdcPull = from p in myAFDCData
+                   where p.NewsOutlet == "ADNC"
+                   select p;
+    var myafdcList = new List<The18th.Areas.Knowledge.ContentDTOs.NewsDto>(afdcPull);
+
+    ///////////////////////////////
+
+    var myGrioData = The18th.Areas.Knowledge.Data.MyContentManager.GetGrioNews();
+
+    var grioPull = from p in myGrioData
+                   where p.NewsOutlet == "Grio"
+                   select p;
+    var mygrioList = new List<The18th.Areas.Knowledge.ContentDTOs.NewsDto>(grioPull);
+
+
+    /////////////////////////////////////Techonomics....The founders platform
+
+
+    @*if (myList.Count <= 0)
+        {
+            The18th.Areas.Growers.GrowersDTOs.GrowerPageDto myOtherMessage = new The18th.Areas.Growers.GrowersDTOs.GrowerPageDto();
+            myOtherMessage.Message = "No results at this time";
+            <Center><h2>@myOtherMessage.Message</h2></Center>
+            Response.Redirect("CountyNotFound?location=" + currentLocation);
+        }*@
+
+
+    //if (myData.Count == 0)
+    //{
+
+    //    The18th.Areas.ContentManagement.ContentDTOs.NewsDto myActivity = new The18th.Areas.ContentManagement.ContentDTOs.NewsDto();
+    //    myActivity.NewsID = Guid.Empty;
+    //    myActivity.NewsImage = "No Activity";
+    //    myActivity.NewsTitle = "No Activity";
+    //    myActivity.NewsOutlet = "No Activity";
+    //    myActivity.ReportedBy = "No Activity";
+    //    myActivity.NewsUrl = "No Activity";
+
+    //    List<The18th.Areas.ContentManagement.ContentDTOs.NewsDto> noActivityList = new List<The18th.Areas.ContentManagement.ContentDTOs.NewsDto>();
+    //    noActivityList.Add(myActivity);
+
+    //    return;
+
+    //}
+
+
+    //The18th.Areas.ContentManagement.ContentDTOs.NewsDto myActivity = new The18th.Areas.ContentManagement.ContentDTOs.NewsDto();
+    //myActivity.NewsID = Guid.Empty;
+    //myActivity.NewsImage = "No Activity";
+    //myActivity.NewsTitle = "No Activity";
+    //myActivity.NewsOutlet = "No Activity";
+    //myActivity.ReportedBy = "No Activity";
+    //myActivity.NewsUrl = "No Activity";
+
+    //List<The18th.Areas.ContentManagement.ContentDTOs.NewsDto> noActivityList = new List<The18th.Areas.ContentManagement.ContentDTOs.NewsDto>();
+    //noActivityList.Add(myActivity);
+
+}
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../CustomStyles.css" rel="stylesheet" />
+<link href="../BackgroundStyles.css" rel="stylesheet" />
+
+<div class="img-responsive">
+    <div class="row">
+        <div class="col-lg-12">
+            <center><h3>Top News Of The Day</h3></center>
+        </div>
+        @*<center><video src="~/KnowledgeVideos/Poultry.mp4" controls=controls width="400" height="300"></video></center>*@
+        <center><video src="https://the18thstorage.blob.core.windows.net/the18thcontainer/intro.mp4" width="400" height="300" autoplay="autoplay"></video></center>@*autoplay="autoplay", loop="loop", controls=controls*@
+        <div id="accordian" class="panel-group">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#panelBodyOne" data-toggle="collapse" data-parent="#accordian">
+                            <span class="glyphicon glyphicon-menu-up"></span>
+                            Black Star Network
+                        </a>
+                    </h4>
+                </div>
+                <div id="panelBodyOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <center><img class="img-responsive" src="https://the18thstorage.blob.core.windows.net/the18thcontainer/Rolandposter.webp" alt="pic" /></center>
+                        <ul>
+                            @foreach (var item in myBsnList)
+                            {
+                                <center><p>@item.NewsOutlet</p></center>
+                                <p><a href="@item.NewsUrl" target="_blank">@item.NewsTitle</a>&nbsp;<span><em><strong>Pub:</strong></em></span>&nbsp;@item.DateCreated.ToShortDateString()&nbsp;@item.OwnershipNote</p>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                @*Second*@
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#panelBodyTwo" data-toggle="collapse" data-parent="#accordian">
+                                <span class="glyphicon glyphicon-menu-up"></span>
+                                African Diaspora News Channel
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="panelBodyTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <center><img class="img-responsive" src="https://the18thstorage.blob.core.windows.net/the18thcontainer/ADNC.jpeg" height="400" width="400" alt="pic" /></center>
+                            <ul>
+                                @foreach (var item in myafdcList)
+                                {
+                                    <center><p>@item.NewsOutlet</p></center>
+                                    <p><a href="@item.NewsUrl" target="_blank">@item.NewsTitle</a>&nbsp;<span><em><strong>Pub:</strong></em></span>&nbsp;@item.DateCreated.ToShortDateString()&nbsp;@item.OwnershipNote</p>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    @*</div>*@
+                    @*Second End*@
+                    @*Third*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="#panelBodyThree" data-toggle="collapse" data-parent="#accordian">
+                                    <span class="glyphicon glyphicon-menu-up"></span>
+                                    The Grio
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="panelBodyThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <center><img class="img-responsive" src="https://the18thstorage.blob.core.windows.net/the18thcontainer/Grio.jpg" height="400" width="400" alt="pic" /></center>
+                                <ul>
+                                    @foreach (var item in mygrioList)
+                                    {
+                                        <center><p>@item.NewsOutlet</p></center>
+                                        <p><a href="@item.NewsUrl" target="_blank">@item.NewsTitle</a>&nbsp;<span><em><strong>Pub:</strong></em></span>&nbsp;@item.DateCreated.ToShortDateString()&nbsp;@item.OwnershipNote</p>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
+                        @*</div>*@
+                        @*Third End*@
+
+                    </div>
+
+                    <br />
+                    <center><p><br /><br /><br /><a class="btn btn-lg btn-primary" href="~/Default.aspx">Return to Home &raquo;</a></p></center>
+                    <br /><br /><br />
+                </div>
+            </div>
+            <script src="Scripts/jquery-3.3.1.min.js"></script>
+            <script src="Scripts/bootstrap.min.js"></script>
+            @*Brought in*@
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.collapse').on('show.bs.collapse', function () {
+                        $(this).parent().find('.glyphicon glyphicon-menu-down').removeClass('glyphicon glyphicon-menu-down').addClass('glyphicon glyphicon-menu-up');
+                    });
+                });
+            </script>
+            @*Brought in End*@
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />

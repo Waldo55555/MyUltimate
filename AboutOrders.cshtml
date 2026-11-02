@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "AboutOrders";
+    Layout = "~/Areas/Knowledge/Views/Shared/_KnowledgeLayoutPage.cshtml";
+
+    HttpCookie myCookie = Request.Cookies["travelCookie"];
+    var pulledSession = myCookie["sessNumber"];
+
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+    <title>Knowledge Craddle | About Orders</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="~/layout/styles/layout.css" type="text/css" />
+    <script type="text/javascript" src="~/layout/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/layout/scripts/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="~/layout/scripts/pngFix/jquery.pngFix.js"></script>
+    <script type="text/javascript" src="~/layout/scripts/mopSlider/mopSlider-2.5.min.js"></script>
+</head>
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../CustomStyles.css" rel="stylesheet" />
+<link href="../BackgroundStyles.css" rel="stylesheet" />
+
+
+    <!-- ####################################################################################################### -->
+    <div class="wrapper col4">
+        <div id="container" class="clear">
+            <!-- ####################################################################################################### -->
+            <h1>About Ordering</h1>
+
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-6 col-sm-4 col-xs-3">
+
+                        <a href="#ordering1"> When ordering products and services</a><br /><br />
+
+                        <a href="#purchase1"> How do I purchase?</a><br /><br />
+
+                        <a href="#ordering2"> How should I pay for products?</a><br /><br />
+
+                        <a href="#ordering3"> Who are the consumers?</a><br /><br />
+
+                        <a href="#ordering4"> How are completed orders handled?</a><br /><br />
+
+                   </div>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-6 col-sm-4 col-xs-3">
+
+                        <a href="#orderingvideo"> A breif look at ordering(Video)</a><br /><br />
+
+                        <a href="#orderingtechnicalwriting"> A step by step instruction on ordering(PDF)</a><br /><br />
+                        <br />
+                        <!-------------------------------------------------------------------------------------------------->
+                        <!--Photo added-->
+                        <div class="img-responsive">
+                            <div class="row">
+                                <p class="imgholder"><span><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/ship.png" width="100" height="100" alt="picture" /></span></p>
+                            </div>
+                        </div>
+                        <!-------------------------------------------------------------------------------------------------->
+                        <br />
+                        <a name="ordering1">When ordering products and services</a><!--End-->
+                        <h1>Orders</h1>
+                        <p>Keep track of your orders placed on your member dash. A good strategy is to order out of your favorites list to trigger discounts and promotions from our grower members.</p>
+                        <!-- ####################################################################################################### -->
+                        <a name="purchase1">How do I purchase?</a><!--End-->
+                        <h1>Purchasing</h1>
+                        <p>Our member cards are similar to and can be used like any traditional debit/credit card.</p>
+                        <p>Tribal cards have additional features for our members. Please review your card service contract for a complete list of card features.</p>
+                        <!-- ####################################################################################################### -->
+                        <a name="ordering2">How should I pay for products?</a><!--End-->
+                        <h1>Payment Method</h1>
+                        <p>Payment methods are automatically set to the member card you were issued upon membership.</p>
+                        <p>We recommend not changing your payment method to an outside personal card. Members card activity help us keep track of member services such as member payouts, member drive payments, and benefiting member payouts etc</p>
+                        <!-- ####################################################################################################### -->
+                        <a name="ordering3">Who are the consumers?</a><!--End-->
+                        <h1>Customers</h1>
+                        <p>To our consumers of our freshly grown fruits and vegetables who are just passing through we are sure you will enjoy the attention to detail that we provide making sure your orders are available.</p>
+                        <!-- ####################################################################################################### -->
+                        <a name="ordering4">How are completed orders handled?</a><!--End-->
+                        <h1>Completed Orders</h1>
+                        <p>Members are able to keep track of all their shippments, orders, and payments through their member dash.</p>
+                        <p>This historical data can give members a good snapshot about which member growers they connect with the most.</p>
+                        <!-- ####################################################################################################### -->
+                        <h1>Discounts and Promotions</h1>
+                        <p>The more you use your favorites list to order repeat orders vendors happily apply discounts to your orders.</p>
+                        <p>Members are the first to recieve exclusive promotions directly from our grower members.</p>
+                        <!-- ####################################################################################################### -->
+                        <h1>Favorites</h1>
+                        <p>Keep track of the vendors you appreciate the most to get exclusive offers and more.</p>
+                        <p>Use your favorites list to complete scheduled orders and just relax.</p>
+                        <!-- ####################################################################################################### -->
+                        <br /><br />
+                        <h1>Video's</h1>
+                        <a name="orderingvideo">A breif look at ordering</a>
+                        @*<a href="~/KnowledgeVids/AboutOrdering.mp4" target="_blank">[video]</a>*@
+                        <a href="https://the18thstorage.blob.core.windows.net/the18thcontainer/ordering.mp4" target="_blank">[video]</a>
+                        <br /><br />
+                        <a name="orderingtechnicalwriting">Ordering step by step</a>
+                        <a href="#">[PDF]</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br />
+
+            <p><br /><br /><br /><a class="btn btn-md btn-primary" href="/Knowledge/Craddle/Craddle">Return &raquo;</a></p>
+
+            <br /><br /><br /> <br /><br /><br /> <br /><br /><br />
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+</html>

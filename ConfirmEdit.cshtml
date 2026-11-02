@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmEdit";
+    Layout = "~/Areas/GrowersDash/Views/Shared/_GrowerDashLayoutPage.cshtml";
+
+    HttpCookie myMemberCookie = Request.Cookies["MemberCookieInfo"];
+    var memberNumber = myMemberCookie["memberNumber"];
+    var growerNumber = myMemberCookie["growerNumber"];
+
+}
+
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../CustomStyles.css" rel="stylesheet">
+<link href="../BackgroundStyles.css" rel="stylesheet">
+
+
+<div class="container">
+
+    <center><h1>Edit Confirmation</h1></center>
+
+    <br /><br /><br />
+
+    <center><h4>You have successfully edited grower information.</h4></center>
+
+    <center><h4>Changes have been saved successfully.</h4></center>
+
+    <center><h4>Edited Grower:@ViewBag.EditMessage</h4></center>
+
+
+    <br />
+    @*<center><h3>@ViewBag.EditMessage2</h3></center>
+
+        <br />*@
+
+
+</div>
+
+<center><p><a class="btn btn-lg btn-primary" href="~/Default.aspx">Return to Home &raquo;</a></p></center>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

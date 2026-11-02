@@ -1,0 +1,90 @@
+﻿@model The18th.Areas.Growers.GrowersDTOs.GrowerMarketInfoDto
+
+@{
+    ViewBag.Title = "EditMarketInfo";
+    Layout = "~/Areas/GrowersDash/Views/Shared/_GrowerDashLayoutPage.cshtml";
+
+    HttpCookie myMemberCookie = Request.Cookies["MemberCookieInfo"];
+    var memberNumber = myMemberCookie["memberNumber"];
+    var growerNumber = myMemberCookie["growerNumber"];
+
+}
+
+<h2>Edit Your Market Info</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>GrowerMarketInfoDto</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.GrowerMarketInfoID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GrowerMarketInfoID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GrowerMarketInfoID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GrowerNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GrowerNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GrowerNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        @Html.HiddenFor(model => model.GrowerMarketInfoID)
+
+        @Html.HiddenFor(model => model.GrowerNumber)
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MarketHours, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <p>What are the best market hours you keep for buyers to locate you?</p>
+                @Html.DropDownList("MarketHours", string.Empty)
+                @Html.ValidationMessageFor(model => model.MarketHours, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MarketDays, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <p>What are the days you keep for your growers market?</p>
+                @Html.DropDownList("MarketDays", string.Empty)
+                @Html.ValidationMessageFor(model => model.MarketDays, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-lg btn-primary" />
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+}
+
+<br />
+<br />
+<br />
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
