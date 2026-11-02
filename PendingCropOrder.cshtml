@@ -1,0 +1,155 @@
+﻿@model The18th.Areas.Segway.SegwayDTOs.DriveOrderDto
+
+@{
+
+    ViewBag.Title = "PendingCropOrder";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    HttpCookie myCookie = Request.Cookies["GrowerCookie"];
+    var currentGrowerNumber = myCookie["growerNumber"];
+
+    The18th.Areas.Segway.SegwayDTOs.DriveCustomerDto browsingCustomer = new The18th.Areas.Segway.SegwayDTOs.DriveCustomerDto();
+    browsingCustomer.SessionNumber = currentGrowerNumber;
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    string cartNumber = Request.QueryString["can33"];
+
+    var cartNum = cartNumber.Trim();
+
+    //////////////////////////////////////////Load Cart
+
+    var cartItems = The18th.Areas.Segway.Data.SegwayManager.GetAllCartItems(cartNum);
+
+    var pulledCart = The18th.Areas.Segway.Data.SegwayManager.GetACart(cartNum);
+
+    //used just for rendering count property
+    The18th.Areas.Segway.SegwayDTOs.CartDto loadedCart = new The18th.Areas.Segway.SegwayDTOs.CartDto();
+    loadedCart.ItemsInCart = cartItems.ToList();
+    loadedCart.CartCount = loadedCart.ItemsInCart.Count;
+
+    The18th.Areas.Segway.SegwayDTOs.DriveOrderDto currentOrder = new The18th.Areas.Segway.SegwayDTOs.DriveOrderDto();
+    currentOrder.CartNumber = cartNumber;
+    currentOrder.OrderStatus = "Pending";
+    currentOrder.SubTotal = 0.0;
+    currentOrder.Tax = 0.0;
+    currentOrder.CardStatus = "Pending";
+    currentOrder.ShipStatus = "Pending";
+    currentOrder.CartCount = loadedCart.ItemsInCart.Count;
+    currentOrder.OrderDate = DateTime.Now;
+    currentOrder.OrderItems = loadedCart.ItemsInCart;
+
+    //We don't need this if statement because we not accounting for other currencies
+    //if (pulledCart.Currency == "&#36")
+    //{
+
+    //    The18th.Service.OrderService os = new The18th.Service.OrderService();
+    //    currentOrder.SubTotal = os.CalculateSubTotal(currentOrder);
+    //    currentOrder.Tax = os.CalculateTax(currentOrder);
+
+    //    currentOrder.StringTax = string.Format("{0:0.00}", currentOrder.Tax);
+
+    //}
+
+    //Temporary...out of scope of above if statement
+    The18th.Service.OrderService os = new The18th.Service.OrderService();
+    currentOrder.SubTotal = os.CalculateSubTotal(currentOrder);
+    currentOrder.Tax = os.CalculateTax(currentOrder);
+
+
+    //Temporary...out of scope of above if statement
+    currentOrder.StringTax = "$0.99";
+
+    //Important
+    var displayItems = The18th.Areas.Segway.Data.SegwayManager.GetAllCartItems(cartNum);
+
+    //last opportunity to trim
+    string currentCan33 = currentOrder.CartNumber.Trim();
+
+}
+
+<h2>Pending Order</h2>
+
+<div class="container">
+
+    <div class="page-header">
+
+        <p class="lead">Complete Your Order</p>
+
+    </div>
+
+    <Center><p>Please review order from this grower in our marketplace.</p></Center>
+
+    <p><img src="~/images/cart.jpg" width="60" height="60" alt="cart photo" />Cart</p>
+
+    <p><Strong>Sub Total:@Html.Raw(pulledCart.Currency) <span style="color:green">@currentOrder.SubTotal.ToString()</span></Strong></p>
+
+    <p><Strong>Tax:@Html.Raw(pulledCart.Currency) <span style="color:green">@currentOrder.StringTax.ToString()</span></Strong></p>
+
+    <p><Strong>Cart Items:<span style="color:green">@loadedCart.CartCount</span></Strong></p>
+
+    <!-------------------------------------------------------------------------------------------------------------->
+    <p class="lead">Items In Cart</p>
+
+    <div class="table-responsive">
+        <table class="table table-condensed table-responsive" CellPadding="0" CellSpacing="0">
+            <tr>
+                <th>
+                    <strong>Crop:</strong>
+                </th>
+
+                @*<th>
+                        <strong>Name:</strong>
+                    </th>*@
+                <th>
+                    <strong>Description:</strong>
+                </th>
+                <th>
+                    <strong>Price:</strong>
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in displayItems)
+            {
+
+                string gaping = item.CropNumber;
+
+                string can33 = currentOrder.CartNumber.Trim();
+
+                <tr>
+                    <td CellPadding="0" CellSpacing="0">
+                        <img src="@Url.Content(item.Crop)" class="center-block img-responsive" width="100" height="100" alt="photo not found" />
+                    </td>
+                    @*<td>
+                            @item.CropName
+                        </td>*@
+                    <td>
+                        @item.CropDescription
+                    </td>
+                    <td>
+                        @Html.Raw(item.PriceDisplay)<span>&nbsp;</span>
+                    </td>
+                    <td>
+                        <p class="title"><a class="btn btn-md btn-primary" href="DeleteCrop?gaping=@gaping + &can33= + @can33">Remove Item</a></p>
+                        &nbsp;
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <hr />
+    <h3><Strong> Order Information</Strong></h3>
+    <p><Strong>Order Date:@DateTime.Now.ToShortDateString()</Strong></p>
+    <p><Strong>Order Status:Pending</Strong></p>
+    <center><p class="title"><a class="btn btn-md btn-primary" href="GhanaCropGroup2?currentCan33=@currentCan33">Add Another Product To Order</a></p></center>
+
+    <br />
+
+    <center><p class="title"><a class="btn btn-md btn-primary" href="GoToCheckOut?currentCan33=@currentCan33 + &subTotal= + @currentOrder.SubTotal + &tax= + @currentOrder.StringTax.ToString()">Proceed To Check Out</a></p></center>
+
+    <br /><br /> <br /> <br /><br />
+    <br /><br /> <br /> <br /><br />
+</div>

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "NoDonationError";
+    Layout = "~/Areas/Support/Views/Shared/_SupportLayoutPage.cshtml";
+}
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../CustomStyles.css" rel="stylesheet">
+<link href="../BackgroundStyles.css" rel="stylesheet">
+
+<div class="container">
+
+    <div class="page-header">
+        <br /><br /><br />
+        <h1><Center>Search not found</Center></h1>
+        <h4><Center>@ViewBag.SearchMessage</Center></h4>
+        <br />
+        <h4><Center>@ViewBag.SearchMessage2</Center></h4>
+        <!--only use view in relative link-->
+        <br />
+        <center><p><a class="btn btn-lg btn-primary" href="/Support/Support/DonateFace">Return&raquo;</a></p></center>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+    </div>
+
+
+</div>

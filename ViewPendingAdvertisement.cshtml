@@ -1,0 +1,236 @@
+﻿@model The18th.Areas.Ads.AdDTOs.AdvertisementDto
+
+@{
+    ViewBag.Title = "ViewPendingAdvertisement";
+    Layout = "~/Areas/Ads/Views/Shared/_AdLayoutPage.cshtml";
+}
+
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/CustomStyles.css" rel="stylesheet">
+<link href="~/BackgroundStyles.css" rel="stylesheet">
+
+
+<script type="text/javascript" language="javascript">
+
+    function EmptyOut() {
+
+        $("#displayarea").empty();
+
+    }
+
+</script>
+
+
+
+<h2>View Pending Advertisement</h2>
+
+
+@*<center>
+
+        <p>Cooperatives listed here are the reason we exist to assist these cooperatives in their mission, goals, and objectives.</p>
+        <p>This cohesion of cooperatives give each cooperative and their members the ability to network on the platform to further their mission.</p>
+        <p class="title"><a href="/Cooperatives/CooP/CooperativeInfo">More Info</a></p>
+    </center>*@
+
+
+
+<div>
+    @*<h4>AdvertisementDto</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+                @Html.DisplayNameFor(model => model.AdvertisementID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AdvertisementID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AccountNumber)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CampaignType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CampaignType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CampaignSchedule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CampaignSchedule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CampaignTotal)
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.CampaignTotal).00
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TargetLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TargetLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BannerDesign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BannerDesign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DesignBanner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DesignBanner)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Deposit)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Deposit)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EstimatedTotal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EstimatedTotal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tax)
+            </dd>*@
+
+    </dl>
+</div>
+<p>
+
+    @Ajax.ActionLink("See Banner", "SeeBanner", new { id = Model.AccountNumber, Model.AccountNumber }, new AjaxOptions()
+
+               {
+
+                   HttpMethod = "GET",
+                   UpdateTargetId = "bannerarea",
+                   InsertionMode = InsertionMode.Replace,
+                   LoadingElementId = "loadSpinner",
+
+               })
+
+</p>
+
+
+<br />
+
+
+<div class="table-responsive">
+    <table class="table table-hover table-condensed" CellPadding="0" CellSpacing="0" border="0">
+        <thead>
+            <tr>
+
+                <th>
+                    @*<center>
+                            @Ajax.ActionLink("See Benefits", "SeeBenefits", new { UrlData = accountNumberCookie, accountNumberCookie }, new AjaxOptions()
+                               {
+
+                                   HttpMethod = "GET",
+                                   UpdateTargetId = "benefitsarea",
+                                   InsertionMode = InsertionMode.Replace,
+                                   LoadingElementId = "loadSpinner",
+
+                               })
+                        </center>*@
+
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="" width="300">
+                <td><div id="bannerarea"> </div></td>
+            </tr>
+        </tbody>
+    </table>
+    <center><div id="loadSpinner" style="display:none"> <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" height="120" width="120" alt="Loading..." /></div></center>
+    <div id="displayarea"><span></span></div>
+
+</div>
+
+<center><p><a class="btn btn-md btn-primary" href="~/Meek/RunUp/RunUpAdmin">Return &raquo;</a></p></center>
+
+<br />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

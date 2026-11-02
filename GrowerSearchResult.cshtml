@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "GrowerSearchResult";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    string currentLocation = Request.QueryString["location"].ToString();
+
+    string currentBusiness = Request.QueryString["growerType"].ToString();
+
+    The18th.Areas.Growers.GrowersDTOs.GrowerPageDto mySearch = new The18th.Areas.Growers.GrowersDTOs.GrowerPageDto();
+    mySearch.Location = currentLocation;
+    mySearch.GrowerType = currentBusiness;
+
+    if (mySearch.Location == "Nothing" || mySearch.GrowerType == "Nothing")
+    {
+
+        currentLocation = "your search!";
+
+        Response.Redirect("SearchNotFound?location=" + currentLocation);
+    }
+
+
+    var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetManualGrowers();
+
+
+    var newPull = from p in pulled
+                  where p.Location == currentLocation && p.GrowerType == currentBusiness
+                  select p;
+       
+
+    //put in 08-06-2020 start
+    int pullCheck = 0;
+
+    pullCheck = newPull.Count();
+
+    ////working
+    if (newPull == null || pullCheck == 0)
+    {
+
+        Response.Redirect("SearchNotFound?location=" + currentLocation);
+
+    }
+
+    //put in 08-06-2020 end
+
+    try
+    {
+
+
+    }
+
+
+    catch (System.NullReferenceException ex)
+    {
+
+        string message = ex.Message;
+
+        //Response.Redirect("~/Errors/SearchNotFoundError.aspx");
+    }
+
+
+}
+
+<Center><h2>Search Results for Growers</h2></Center>
+
+<Center><p>Here are search results in @currentLocation for @currentBusiness.</p></Center>
+
+<br />
+<br />
+<!-- ####################################################################################################### -->
+<div class="container">
+    <div class="row">
+        <div class="img-responsive">
+            <div class="row">
+                @{
+
+                    foreach (var business in newPull)
+                    {
+
+                        <center>
+                            <div id="portfolio">
+
+                                <ul>
+                                    <div class="row">
+
+                                    <li>
+                                        <center>
+                                            <img src="@business.GrowerImage" alt="" />
+                                            <p class="readmore">@business.GrowerName</p>
+                                            <p>@business.MarketAddress</p>
+                                            <p>@business.Location</p>
+                                            @*<p>@business.BusinessPhone</p>*@
+                                            @*<p class="readmore">@item.Networked</p>*@
+                                            <p>@business.GrowerDescription</p>
+                                            @*<p><a href="@business.WebAddress">Website</a></p>*@
+                                            @*<p><a href="@Model.WebAddress">BitePage</a></p>*@
+                                        </center>
+                                    </li>
+
+                            </div>
+                            </ul>
+
+                    </div>
+                    </center><br />
+                }
+
+               }
+
+            </div>
+
+        </div>
+    </div>
+ @*</div>*@
+
+

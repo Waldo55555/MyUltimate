@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "TrackHome";
+    Layout = "~/Areas/Support/Views/Shared/_SupportLayoutPage.cshtml";
+
+    string _donNumber = Request.QueryString["donorNumber"].Trim();
+
+    The18th.Areas.Support.SupportDTO.DonateDto myDonations = new The18th.Areas.Support.SupportDTO.DonateDto();
+    myDonations.DonorNumber = _donNumber;
+
+    var myDons = The18th.Areas.Support.Data.SupportManager.GetMyDonations(myDonations.DonorNumber);
+
+
+    var myQuery = (from c in myDons
+                   where c.DonorNumber == _donNumber
+                   select c).Take(5);
+
+
+    var myList = new List<The18th.Areas.Support.SupportDTO.DonateDto>(myQuery);
+
+
+    if (myList.Count <= 0)
+    {
+
+        Response.Redirect("NoDonationError");
+    }
+
+
+
+
+}
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" , initial-scale="1" />
+<title>One Farm</title>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../CustomStyles.css" rel="stylesheet" />
+<link href="../BackgroundStyles.css" rel="stylesheet" />
+@*row backgroundimg*@
+<div class="">
+    <div class="container">
+        <center><h1 class="h1 text-center">Tracking</h1></center>
+
+        <div id="container" class="clear">
+            <center><h3>Donation Tracking</h3></center>
+            <center><p>Here are the following donations you have contributed.</p></center>
+        </div>
+    </div>
+
+    <hr />
+
+    <center>
+        <h3>Current Donations</h3>
+    </center>
+
+    <br />
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed" CellPadding="0" CellSpacing="0" border="0">
+            <tr>
+                @*<th>
+                        <strong>Project Photo:</strong>
+                        <strong>&nbsp;</strong>
+                    </th>*@
+                <th>
+                    <strong>Donor Number:</strong>
+                </th>
+                <th>
+                    <strong>Name:</strong>
+                </th>
+                <th>
+                    <strong>Donation Type:</strong>
+                </th>
+                <th>
+                    <strong>Donation Amount:</strong>
+                </th>
+                <th>
+                    <strong>Donation Date:</strong>
+                </th>
+                @*<th></th>*@
+            </tr>
+            @foreach (var item in myQuery)
+            {
+                <tr>
+                    @*<td CellPadding="0" CellSpacing="0" border="0">
+                          <img src="~/Images/Thumbs/Project1.jpg" />
+                        </td>*@
+                    <td>
+                        @item.DonorNumber
+                    </td>
+                    <td>
+                        @item.FirstName
+                    </td>
+                    <td>
+                        @item.DonorType
+                    </td>
+                    <td>
+                        @item.DonationAmount
+                    </td>
+                    <td>
+                        @item.DonationDate
+                    </td>
+                    @*<td>
+                         <Center><p><a class="btn btn-lg btn-primary" href="#">Return &raquo;</a></p></Center>
+                        </td>*@
+                </tr>
+            }
+        </table>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br />
+    </div>
+
+    @*88888888888888888888888888888888888888888888*@
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+

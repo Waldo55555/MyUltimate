@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "MyBenefits";
+    Layout = "~/Areas/MemberShip/Views/Shared/_MemberDashLayoutPage.cshtml";
+
+    //////2nd Level...Original
+    //HttpCookie memberCookie = Request.Cookies["MemberCookieInfo"];
+    //string membershipNumber = memberCookie["memberNumber"];
+    //string accountNumber = memberCookie["accountNumber"];
+
+    //Evaluation
+    ////New...Start
+    string invitationAccountNumber = Request.QueryString["invitationAccountNumber"];
+
+    HttpCookie invitationCookie = Request.Cookies["InviteCookieInfo"];
+    string membershipNumber = invitationCookie["invitationNumber"];
+    string accountNumber = invitationCookie["invitationNumber"];
+
+    ////New...End
+
+
+    //Original
+    //var ourPhoto = The18th.Areas.MemberShip.Data.MembershipManager.GetProfilePhoto(accountNumber);
+
+    var ourPhoto = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationProfilePhoto(accountNumber);
+
+    The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto myMembership = new The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto();
+    myMembership.MembershipNumber = membershipNumber;
+
+    //Original
+    //var ourMembership = The18th.Areas.MemberShip.Data.MembershipManager.GetAMembership(membershipNumber);
+
+    var ourMembership = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMembership(membershipNumber);
+
+    /////////////Format Phone
+
+    //double phone = double.Parse(ourMember.Phone);
+
+    //var fullPhone = String.Format("{0: (000)-000-0000}", phone);
+
+    //ourMember.Phone = fullPhone.Trim();
+
+    /////////////Format Phone End
+
+
+    //Original
+    //var memberOrders = The18th.Areas.TribalCRM.OneStateData.CustomerManager.GetMyOrders(accountNumber);
+    //var memberPayments = The18th.Areas.TribalCRM.OneStateData.CustomerManager.GetMyPayments(accountNumber);
+    //var memberShippings = The18th.Areas.TribalCRM.OneStateData.CustomerManager.GetMyShippings(accountNumber);
+
+    var memberOrders = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyOrders(accountNumber);
+
+    var memberPayments = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyPayments(accountNumber);
+
+    var memberShippings = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationMyShippings(accountNumber);
+
+    ///////////////////////////Favorite Count
+
+    //Original
+    //var myFavorites = The18th.Areas.MemberShip.Data.MembershipManager.GetAllMyFavorites(accountNumber);
+
+
+    var myFavorites = The18th.Areas.MemberShip.Data.EvaluationManager.GetEvaluationAllMyFavorites(accountNumber);
+
+    //here
+    //Still need to be implemented
+    //var myBenefits = The18th.Areas.TribalCRM.Data.TribalManager.GetMyMemberBenefits(accountNumberCookie);
+
+}
+
+
+<script type="text/javascript" language="javascript">
+
+    function EmptyOut()
+    {
+
+        $("#displayarea").empty();
+
+    }
+
+</script>
+
+
+
+<center><h2>Member Dash</h2></center>
+
+<center><p class="lead">"Finance your own independence"</p></center>
+
+<div class="img-responsive">
+
+    <div class="row">
+
+        <center><p><img src="@Url.Content(ourPhoto.MemberImageUrl)" width="100" height="100" alt="member photo" />@ourMembership.ScreenName</p></center>
+        <center><p>Member Focus:&nbsp;@ourMembership.MemberFocus</p></center>
+        <center><p>Favorite Vendors:&nbsp;@myFavorites.Count</p></center>
+
+    </div>
+
+    <hr />
+
+    <center><h3>Manage your tribal account</h3></center>
+
+    <table class="table table-hover table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">
+        <thead>
+            <tr>
+                <th>
+                    <center>Review My Benefits</center>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="">
+                <td>
+                    <center>
+                        @Ajax.ActionLink("See Benefits", "SeeBenefits", new { UrlData = accountNumber, accountNumber }, new AjaxOptions()
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "displayarea",
+                            InsertionMode = InsertionMode.Replace,
+                            LoadingElementId = "loadSpinner",
+                            OnBegin = "EmptyOut"
+                        })
+
+                    </center>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <center><div id="loadSpinner" style="display:none"> <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" height="120" width="120" alt="Loading..." /></div></center>
+    <div id="displayarea"><span></span></div>
+
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+
+

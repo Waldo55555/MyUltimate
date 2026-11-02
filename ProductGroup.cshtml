@@ -1,0 +1,69 @@
+﻿@model The18th.Areas.Growers.GrowersDTOs.GrowerProductDto
+
+@{
+    ViewBag.Title = "FocusProductGroup";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    HttpCookie currentGrowerCookie = Request.Cookies["GrowerCookie"];
+    var currentGrowerNumber = currentGrowerCookie["growerNumber"];
+
+    var crop = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProducts(currentGrowerNumber);
+
+}
+
+<h2>Explore Grower Products</h2>
+
+<div class="container">
+    <div class="row">
+        <center><h3>Products From Grower</h3></center>
+    </div>
+
+    <br />
+
+</div>
+
+<Center>
+    <p>Growers have created food products for our member consumers.</p>
+</Center>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <center>
+            <div class="img-responsive">
+                <div class="row">
+                    <center>
+                        <div class="img-responsive">
+                            @*<img src="@Url.Content(crop.CropImage)" width="100" height="100" alt="crop photo" />*@
+                            <center><a href="#"><img src="@crop.ProductImage" height="100" width="100" alt="grower photo" /></a></center>
+                            <div>
+                                <p class="">&nbsp;&nbsp;&nbsp;$@Html.Raw(crop.PricePerItem)&nbsp;<span>Each</span>&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="/Growers/Market/InHandProduct?gaping=@crop.GrowerNumber">&nbsp;&nbsp;Purchase</a></p>
+                                @*<p class="">*@
+                                <p class="">@crop.FullDescription</p>
+                                @Html.Hidden("gaping", crop.GrowerNumber)
+                                @*</p>*@
+
+                            </div>
+                            <br /><br /><br />
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </center>
+
+
+        <br /><br /><br />
+
+        <center><p><a class="btn btn-md btn-primary" href="~/Welcome.aspx">Return</a></p></center>
+
+    </div>
+
+}
+<br />
+<br />
+<br />
+

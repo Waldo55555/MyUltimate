@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "GrowersMarketDash";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    string SetgrowerNumber = Request.QueryString["selectedGrowerNumber"].Trim();
+
+    //Start of grower Cookie here....1
+    HttpCookie currentGrowerCookie = new HttpCookie("GrowerCookie");
+    currentGrowerCookie["growerNumber"] = SetgrowerNumber.Trim();
+    Response.Cookies.Add(currentGrowerCookie);
+
+    The18th.Areas.Growers.GrowersDTOs.GrowerLocationInfoDto myLocation = new The18th.Areas.Growers.GrowersDTOs.GrowerLocationInfoDto();
+    myLocation.GrowerNumber = SetgrowerNumber;
+
+    var clientLocation = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationLocation(myLocation.GrowerNumber);
+
+    The18th.Areas.Growers.GrowersDTOs.GrowerProfileDto myGrower = new The18th.Areas.Growers.GrowersDTOs.GrowerProfileDto();
+    myGrower.GrowerNumber = SetgrowerNumber;
+
+    var clientProfile = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProfile(myGrower.GrowerNumber);
+
+    var growerPhoto = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProfilePhoto(myGrower.GrowerNumber);
+    
+
+    var meekers = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationSettlement(SetgrowerNumber);
+
+    //PowerApp/Dataverse development for Dynamics Start
+
+    //OrganizationService service = new OrganizationService("YourCRMConnectionString");
+
+    //had to be qualified
+    //Microsoft.Xrm.Client.Services.OrganizationService service = new Microsoft.Xrm.Client.Services.OrganizationService("YourCRMConnectionString");
+
+    //PowerApp/Dataverse development for Dynamics End
+
+}
+
+
+<div class="container">
+    <div class="row">
+        <center>
+            <div>
+                @*<img src="data:Image/jpg;base64,@(Html.Raw(Convert.ToBase64String(clientProfile.PhotoData)))" class="img-fluid img-rounded" width="100" height="100" alt="grower photo" />*@
+                <center><a href="#"><img src="@growerPhoto.FullImagePath" height="60" width="60" alt="grower photo" /></a></center>
+            </div>
+        </center>
+
+        <center><p>@ViewBag.FavoriteMessage</p></center>
+
+    </div>
+
+    <div class="col-md-12">
+        <div class="">
+            <center>Screen Name:&nbsp;<strong>@clientProfile.GrowerName</strong></center>
+            <center>Location:&nbsp;<strong>@clientLocation.Location</strong></center>
+            <center>Phone:&nbsp;<strong>@clientProfile.GrowerPhone</strong></center>
+            @*<center>Location:&nbsp;<strong>@clientLocation.County</strong></center>*@
+            <br /><br />
+        </div>
+    </div>
+    <br />
+
+</div>
+
+<div class="img-responsive">
+
+    <div class="row">
+
+        @foreach (var item in meekers)
+        {
+            <div class="col-md-4 col-xs-12">
+                &nbsp;&nbsp;&nbsp;<img src="@Url.Content(item.PlaceHolderPhoto)" class="center-block img-responsive" width="100" height="100" alt="photo not found" />
+                <center><p class="title"><a class="btn btn-md btn-primary" href="/@clientLocation.NavArea/@clientLocation.Controller/@item.Action">@item.PlaceHolderName</a></p></center>
+                <center><p>@item.Description</p></center><br />
+            </div>
+
+        }
+
+    </div>
+
+</div>
+
+
+<br />
+<br />
+<br />
+
+<center><p><a class="btn btn-md btn-primary" href="~/Welcome.aspx">Return</a></p></center>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

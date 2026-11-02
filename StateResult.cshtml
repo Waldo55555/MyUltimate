@@ -1,0 +1,326 @@
+﻿
+@{
+    ViewBag.Title = "StateResult";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    var myQuery = new List<The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto>();
+
+    string currentLocation = Request.QueryString["location"].ToString();
+
+    if (currentLocation == "Mississippi")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetMississippi();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+
+    else if (currentLocation == "Texas")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetTexas();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+    else if (currentLocation == "Alabama")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetAlabama();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+
+
+    else if (currentLocation == "Florida")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetFlorida();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+
+
+    else if (currentLocation == "Georgia")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetGeorgia();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+
+
+    else if (currentLocation == "Louisiana")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetLouisiana();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+
+    else if (currentLocation == "North Carolina")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetNorthCarolina();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+    else if (currentLocation == "South Carolina")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetSouthCarolina();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+
+    else if (currentLocation == "Tennessee")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetTennessee();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+
+    else if (currentLocation == "Virginia")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetVirginia();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+    else if (currentLocation == "Arkansas")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetArkansas();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+
+
+    else if (currentLocation == "Maryland")
+    {
+
+        var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetMaryland();
+
+        foreach (var item in pulled)
+        {
+
+            The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto pulledCounty = new The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto();
+            pulledCounty.CountyLookUpID = item.CountyLookUpID;
+            pulledCounty.CountyName = item.CountyName;
+            pulledCounty.County = item.County;
+            pulledCounty.State = item.State;
+            pulledCounty.CountyImage = item.CountyImage;
+
+            myQuery.Add(pulledCounty);
+        }
+
+
+    }
+
+    var myOtherQuery = (from c in myQuery
+                            //orderby c.State ascending
+                        select c).Take(4);
+
+    var myList = new List<The18th.Areas.Directory.DirectoryDTOs.CountyLookUpDto>(myOtherQuery);
+
+
+}
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/CustomStyles.css" rel="stylesheet">
+<link href="/BackgroundStyles.css" rel="stylesheet">
+
+<Center>
+    <p>Check for growers by state.</p>
+</Center>
+
+<div class="container">
+    <div class="row">
+        <div class="img-responsive">
+            <Center><h2>@currentLocation Growers</h2></Center>
+            <ul>
+                @foreach (var item in myList)
+                {
+                    <center>
+                    <li class="last">
+                        &nbsp;&nbsp;&nbsp;<img src="@Url.Content(item.CountyImage)" class="img-responsive" height="250" width="250" />@*col-md-4 col-md-offset-4 img-responsive*@
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>County:</strong> @item.CountyName</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>State:</strong> @item.State</p>
+                    </li>
+                    </center>
+                }
+            </ul>
+            <br /><br /><br />
+            &nbsp;&nbsp;&nbsp;<center><a class="btn btn-lg btn-primary" href="State">Back To Search &raquo;</a></center>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+

@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "State";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    var pulled = The18th.Areas.Directory.Data.DirectoryManager.GetAllStates();
+
+    var myQuery = (from c in pulled
+                       //orderby c.State ascending
+                   select c).Take(4);
+
+    var myList = new List<The18th.Areas.Directory.DirectoryDTOs.StateLookUpDto>(myQuery);
+
+    if (myList.Count <= 0)
+    {
+        The18th.Areas.Directory.DirectoryDTOs.StateLookUpDto myOtherMessage = new The18th.Areas.Directory.DirectoryDTOs.StateLookUpDto();
+        myOtherMessage.Message = "No results at this time";
+        <Center><h2>@myOtherMessage.Message</h2></Center>
+        Response.Redirect("CountyNotFound");
+    }
+
+    try
+    {
+
+    }
+    catch (System.NullReferenceException ex)
+    {
+        string message = ex.Message;
+        //Response.Redirect("~/Errors/SearchNotFoundError.aspx");
+    }
+
+}
+
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../CustomStyles.css" rel="stylesheet">
+<link href="../BackgroundStyles.css" rel="stylesheet">
+
+<center><p>Support the growers that support your community. Find growers near you or those that ship to you!</p></center>
+<center><p>Locate growers near you, patronize them, and build upon our platform of sustainability.</p></center>
+
+<div class="container">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-12">
+                <center><h3>States</h3></center>
+            </div>
+            <br /><br /><br />
+            <center>
+                @foreach (var item in myQuery)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <a href="StateResult?location=@item.State" class="thumbnail" height="200" width="200">
+                            <p>@item.State</p>
+                            <img src="@Url.Content(item.StateImage)" />
+                        </a>
+                    </div>
+                }
+            </center>
+            <ul class="pagination">
+                <center>
+                <li class="disabled"><a href="#">&laquo;Previous</a></li>
+                <li class="active"><a href="State">1</a></li>
+                <li><a href="StatesPaged">2</a></li>
+                <li><a href="StatesPaged1">3</a></li>
+                @*<li><a href="StatesPage2">4</a></li>*@
+                <li class="disabled"><a href="StatesPaged">Next &raquo;</a></li>
+                </center>
+            </ul>
+        </div>
+        <br /><br />
+        <center><p><a class="btn btn-lg btn-primary" href="~/Welcome.aspx">Return&raquo;</a></p></center>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    </div>
+
+
+</div>
+

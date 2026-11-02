@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "SupportFace";
+    Layout = "~/Areas/Support/Views/Shared/_SupportLayoutPage.cshtml";
+
+    var fan = The18th.Areas.Support.Data.SupportManager.GetAllFanbaseDescriptions();
+
+    var youTube = The18th.Areas.Support.Data.SupportManager.GetAllYouTubeDescriptions();
+
+    //for rendering fanbase
+    var avatargrowers = "@avatargrowers";
+
+}
+
+
+<meta charset="utf-8" />
+<title>Avatar Growers(Beta)</title>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript" language="javascript">
+    function EmptyOut() {
+        $("#displayarea").empty();
+    }
+</script>
+
+<div class="">
+    <div class="container">
+        <center><h3 class="h1 text-center">Support Our Platform</h3></center>
+
+        <div id="container" class="clear">
+            <h4>Platform Support</h4>
+            <p><span>Contributions are not the same as Stakeholder funds or member funds. Contributions are made to sustain our platform.Your Contribution to AG are only for the use of our administrative duties.</span></p>
+        </div>
+    </div>
+
+    <hr />
+
+    <center>
+        <h3>Support Options</h3>
+    </center>
+  
+    <br />
+
+    <p><span>The easiest way to support the platform is to set up the following tools you will need to thrive on the platform. It is our goal to always exchange something that is tangible for your support. Simply subscribe and check back on the platform to track your contribution.</span></p>
+
+    <hr />
+
+    <h4><em><strong>Fanbase Subscription.</strong></em></h4>
+    <p><span>Your subscription goes a long way to keeping you abreast of the platform. You will also have the ability to see the immediate impact of your subscription.Simply subscribe and check back on the platform to track your contribution.</span></p>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed" CellPadding="0" CellSpacing="0" border="0">
+
+
+            <tr>
+                <th>
+                    <strong>Fanbase:</strong>
+                </th>
+                <th>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Follow & Subscribe:</strong>
+                </th>
+                @*<th></th>*@
+            </tr>
+            @foreach (var item in fan)
+            {
+                <tr>
+
+                    <td>
+                        @Ajax.ActionLink("Full Description", "SeeFanbaseDescriptions", new { id = item.ContributorNumber, item.ContributorNumber }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "infoarea",
+                                InsertionMode = InsertionMode.Replace,
+                                LoadingElementId = "loadSpinner",
+                                OnBegin = "EmptyOut"
+                            })
+
+                    </td>
+                    <td>
+
+                        @*<p class="title"><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/fanbpic.png" height="40" width="50" alt="fanpic" />&nbsp;Join Us On Fanbase:&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="https://www.fanbase.app/@avatargrowers" target="_blank">Suscribe&raquo;</a></p>*@
+                        <p class="title"><img src="/images/fanbpic.png" height="40" width="50" alt="fanpic" />&nbsp;Join Us On Fanbase:&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="https://www.fanbase.app/@avatargrowers" target="_blank">Suscribe&raquo;</a></p>
+                    </td>
+
+                </tr>
+
+            }
+        </table>
+
+    </div>
+
+    <div id="infoarea"> </div>
+    <center><div id="loadSpinner" style="display:none"> <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" height="120" width="120" alt="Loading..." /></div></center>
+    <center><div id="displayarea"><span></span></div></center>
+
+    <h4><em><strong>YouTube Subscription.</strong></em></h4>
+    <p><span>When you like, subscription, and set your notifications you advance the platform.</span></p>
+
+    <br />
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed" CellPadding="0" CellSpacing="0" border="0">
+            <tr>
+
+                <th>
+                    <strong>YouTube:</strong>
+                </th>
+                <th>
+                    <strong>Follow & Subscribe:</strong>
+                </th>
+                @*<th></th>*@
+            </tr>
+            @foreach (var item in youTube)
+            {
+                <tr>
+
+                    <td>
+                        @Ajax.ActionLink("Full Description", "SeeYouTubeDescriptions", new { id = item.ContributorNumber, item.ContributorNumber }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "infoarea",
+                                InsertionMode = InsertionMode.Replace,
+                                LoadingElementId = "loadSpinner",
+                                OnBegin = "EmptyOut"
+                            })
+
+                    </td>
+                    <td>
+
+                        @*<p class="title"><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/youTube.png" height="50" width="100" alt="youpic" />&nbsp;Follow Us:&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="https://www.youtube.com/channel/UC3pxh9UsH2MxKNvv0g8WBCg" target="_blank">Suscribe&raquo;</a></p>*@
+                        <p class="title"><img src="/images/youTube.png" height="50" width="100" alt="youpic" />&nbsp;Follow Us:&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="https://www.youtube.com/channel/UC3pxh9UsH2MxKNvv0g8WBCg" target="_blank">Suscribe&raquo;</a></p>
+
+                    </td>
+                </tr>
+            }
+        </table>
+
+
+    </div>
+
+    @*----------------------------------------------------------------------------------------------------------*@
+
+    <br />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+
+    <br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    @*</div>*@
+
+</div>
+

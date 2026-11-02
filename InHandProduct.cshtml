@@ -1,0 +1,68 @@
+﻿@model The18th.Areas.Growers.GrowersDTOs.GrowerProductDto
+
+@{
+
+    ViewBag.Title = "InHandProduct";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    HttpCookie myCookie = Request.Cookies["GrowerCookie"];
+    var currentGrowerNumber = myCookie["growerNumber"];
+
+    The18th.Areas.Segway.SegwayDTOs.DriveCustomerDto browsingCustomer = new The18th.Areas.Segway.SegwayDTOs.DriveCustomerDto();
+    browsingCustomer.SessionNumber = currentGrowerNumber;
+     
+}
+
+<h2>Purchase Products</h2>
+
+<div class="container">
+    <div class="row">
+        <center><h3>Product From Grower</h3></center>
+    </div>
+    <br />
+</div>
+
+<Center>
+    <p>Grower products are displayed in the marketplace that are produced for our member consumers.</p>
+</Center>
+<center>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="img-responsive">
+                <div class="row">
+                    <div class="img-responsive">
+                        <Center>
+                            <img src="@Url.Content(Model.ProductImage)" width="100" height="100" alt="crop photo" />
+                        </Center>
+                        $@Html.Raw(Model.PricePerItem) <span>Each</span>
+                        <p class="pull-left">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SelectedQuantity, "Quantity", htmlAttributes: new { @class = "control-label" })<br />
+                                <div class="col-md-12">
+                                    @Html.DropDownList("SelectedQuantity", string.Empty)<span>Each</span>
+                                    @Html.ValidationMessageFor(model => model.SelectedQuantity, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @Html.Hidden("gaping", Model.GrowerNumber)
+                            @*@Html.Hidden("cropIndex", Model.CropIndex)*@
+                        </p>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-8">
+                                <input type="submit" value="Add To Cart" class="btn btn-md btn-primary" />
+                            </div>
+                        </div>
+                        <br /><br /><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</center>
+<br />
+<br />
+<br />

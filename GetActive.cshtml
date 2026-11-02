@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "GetActive";
+    Layout = "~/Areas/Support/Views/Shared/_SupportLayoutPage.cshtml";
+
+    var card = The18th.Areas.Support.Data.SupportManager.GetAllCardVendorDescriptions();
+
+    var enviro = The18th.Areas.Support.Data.SupportManager.GetAllEnvironmentDescriptions();
+
+    //for rendering fanbase
+    var avatargrowers = "@avatargrowers";
+
+
+}
+
+
+<meta charset="utf-8" />
+<title>AG Market(Beta)</title>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript" language="javascript">
+    function EmptyOut() {
+        $("#displayarea").empty();
+    }
+</script>
+
+<div class="">
+    <div class="container">
+        <center><h3 class="h1 text-center">Get Active On The Platform</h3></center>
+
+        @*<div id="container" class="clear">
+            <h4>Platform Support</h4>
+            <p><span>Contributions are not the same as Stakeholder funds or member funds. Contributions are made to sustain our platform.Your Contribution to AG are only for the use of our administrative duties.</span></p>
+        </div>*@
+    </div>
+
+    <hr />
+
+  
+    <br />
+
+    <h4><em><strong>Secure Growing Environment.</strong></em></h4>
+    <p><span>When you secure our sponsored growing environment you are able to set your growing activities on the platform and start earning. Simply order your environment and check back on the platform to track your contribution.</span></p>
+
+    <br />
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed" CellPadding="0" CellSpacing="0" border="0">
+            <tr>
+
+                <th>
+                    <strong>Grower Pack:</strong>
+                </th>
+                <th>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Secure Grower Pack:</strong>
+                </th>
+                @*<th></th>*@
+            </tr>
+            @foreach (var item in enviro)
+            {
+                <tr>
+
+                    <td>
+                        @Ajax.ActionLink("Full Description", "SeeEnvironmentDescriptions", new { id = item.ContributorNumber, item.ContributorNumber }, new AjaxOptions()
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "infoarea",
+                            InsertionMode = InsertionMode.Replace,
+                            LoadingElementId = "loadSpinner",
+                            OnBegin = "EmptyOut"
+                        })
+
+                    </td>
+                    <td>
+
+                        @*<p class="title"><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/torp3.png" height="50" width="110" alt="torppic" />&nbsp;TorpedoPot:&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="https://torpedopot.com/?ref=iopoislw" target="_blank">Order&raquo;</a></p>*@
+                        <p class="title"><img src="/images/torp3.png" height="50" width="110" alt="torppic" />&nbsp;TorpedoPot:&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="https://torpedopot.com/?ref=iopoislw" target="_blank">Order&raquo;</a></p>
+
+                    </td>
+                </tr>
+
+            }
+        </table>
+    </div>
+
+
+    <div id="infoarea"> </div>
+    <center><div id="loadSpinner" style="display:none"> <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" height="120" width="120" alt="Loading..." /></div></center>
+    <center><div id="displayarea"><span></span></div></center>
+
+
+    <h4><em><strong>Secure Bank Card.</strong></em></h4>
+    <p><span>When you secure our sponsored card vendor you automatically enroll for our member card.Use our special promo Code:MJOHN7. Simply order your card and check back on the platform to track your contribution.</span></p>
+
+    <br />
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed" CellPadding="0" CellSpacing="0" border="0">
+            <tr>
+
+                <th>
+                    <strong>Member Card:&nbsp;&nbsp;</strong>
+                </th>
+                <th>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Secure Member Card:</strong>
+                </th>
+                @*<th></th>*@
+            </tr>
+            @foreach (var item in card)
+            {
+                <tr>
+
+                    <td>
+                        @Ajax.ActionLink("Full Description", "SeeCardVendorDescriptions", new { id = item.ContributorNumber, item.ContributorNumber }, new AjaxOptions()
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "infoarea",
+                            InsertionMode = InsertionMode.Replace,
+                            LoadingElementId = "loadSpinner",
+                            OnBegin = "EmptyOut"
+                        })
+
+                    </td>
+                    <td>
+                        @*<p class="title"><img src="https://the18thstorage.blob.core.windows.net/the18thcontainer/greencard.png" height="50" width="100" alt="greenpic" />&nbsp;Greenwood Card:&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="https://oneunited.com/referral?MJOHN7" target="_blank">Order&raquo;</a></p>*@
+                        <p class="title"><img src="/images/greencard.png" height="50" width="100" alt="greenpic" />&nbsp;Greenwood Card:&nbsp;&nbsp;<a class="btn btn-xs btn-primary" href="https://oneunited.com/referral?MJOHN7" target="_blank">Order&raquo;</a></p>
+                    </td>
+                </tr>
+
+            }
+        </table>
+
+    </div>
+   
+    <br />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+
+    <br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    @*</div>*@
+
+</div>
+

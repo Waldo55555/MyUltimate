@@ -1,7 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Donate.aspx.cs" Inherits="The18th.Donate" %>
 
-
-<%@ OutputCache Duration="3600" VaryByParam="None" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -9,9 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=0"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Avatar Growers</title>
+<title>AG Market(Beta)</title>
 <link rel="shortcut icon" type="image/x-icon" href="https://the18thstorage.blob.core.windows.net/the18thcontainer/favicon.ico" />
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
+<!--@*client side validation in order*@-->
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  
 
 <script src="jquery-1.11.2.js"></script>
 <link href="jquery-ui.css" rel="stylesheet" />
@@ -32,7 +34,7 @@
 <body>
      <div class="navbar navbar-default navbar-fixed-top"> 
             <div class="container-fluid">
-                <a href="Default.aspx" class="navbar-brand">Avatar Growers(Beta)</a>
+                <a href="Welcome.aspx" class="navbar-brand">AG Market(Beta)</a>
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -41,11 +43,11 @@
                       <div class="collapse navbar-collapse navHeaderCollapse">
                            <ul class="nav navbar-nav navbar-right">
 
-                             <%-- <li><a href="MemberInfoEntry">Become a Member</a></li>--%>
-
                             <li><a href="TrackDonation.aspx">Track My Donations</a></li>
 
                             <li><a href="TrackDonation.aspx">Reclaim My Donations</a></li>
+
+                            <%--<li><a href="/Donations/Donations/AboutDonations">About Donations</a></li>--%>
 
                           </ul>
                       </div>
@@ -123,27 +125,33 @@
             <div class="form-group">
                 <label>Please enter your first name.</label>
                 <asp:TextBox ID="firstNameTextBox" placeholder="First Name" runat="server" CssClass="form-control"></asp:TextBox><br />
+                <asp:RequiredFieldValidator ID="firstNameValidator" runat="server" ForeColor="Red" ControlToValidate="firstNameTextBox" ErrorMessage="Required"></asp:RequiredFieldValidator>
             </div>
            
             <div class="form-group">
                 <label>Please enter your phone .</label>
                  <asp:TextBox ID="phoneTextBox" placeholder="Phone" runat="server" CssClass="form-control"></asp:TextBox><br />
-
+                 <asp:RequiredFieldValidator ID="phoneFieldValidator" runat="server" ForeColor="Red" ControlToValidate="phoneTextBox" ErrorMessage="Required"></asp:RequiredFieldValidator>
             </div>
  
            <div class="form-group">
                 <label>Please enter your email.</label>
-                 <asp:TextBox ID="emailTextBox" placeholder="example@email" runat="server" CssClass="form-control"></asp:TextBox><br />
+                 <asp:TextBox ID="emailTextBox" placeholder="example@email" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox><br />
+           </div>
 
+            <div class="form-group">
+            <label>Please verify email.</label>
+            <asp:TextBox ID="verifyEmailTextBox" placeholder="verify your email"  runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox><br />
+            <asp:RequiredFieldValidator ID="emailFieldValidator" runat="server" ForeColor="Red" ControlToValidate="emailTextBox" ErrorMessage="Required"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="verifyEmail" runat="server" ErrorMessage="Emails Do Not Match" ControlToValidate="verifyEmailTextBox" ControlToCompare="emailTextBox" Operator="Equal" Type="String" ForeColor="Red"></asp:CompareValidator>
             </div>
 
             <div class="form-group">
                 <label>Please select your Donation Type.</label>
                 <asp:DropDownList ID="donationTypeDropDownList" runat="server" CssClass="form-control">
                 <asp:ListItem Text="Select Donation Type..." Value="Select Donation Type..." Selected="True" Enabled="true" />
-                <asp:ListItem Text="Administration" Value="Administration" />
-                <asp:ListItem Text="Marketing" Value="Marketing" />
-                <asp:ListItem Text="InformationTechnology" Value="InformationTechnology" />
+                <asp:ListItem Text="Members Plot Purchase" Value="MembersPlotPurchase" />
+                <asp:ListItem Text="Platform Sustainment" Value="PlatformSustainment" />
                 </asp:DropDownList><br />
             </div>
   
@@ -163,7 +171,7 @@
   
             <br />
 
-           <p><asp:Button ID="donateButton" runat="server" Text="Make Donation" CssClass="btn btn-md btn-primary" OnClick="donateButton_Click"  UseSubmitBehavior="false" OnClientClick="this.disable= 'true'; this.value= 'Working...';"/>&nbsp; <a class="btn btn-md btn-primary" href="Welcome.aspx">Return</a></p>
+           <p><asp:Button ID="donateButton" runat="server" Text="Make Donation" CssClass="btn btn-md btn-primary" OnClick="donateButton_Click"  UseSubmitBehavior="false" OnClientClick="this.disable= 'true'; this.value= 'Working...';"/>&nbsp; <a class="btn btn-md btn-primary" href="/Donations/Donations/DonateFace">Return</a></p>
 
             <br /><br /><br /><br /><br /><br /><br /><br /><br />
 
@@ -182,15 +190,9 @@
     <!--Footer-->
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
-           <br />
-            <center><p><a href="Meek/RunUp/RunUpAdmin"><span class="glyphicon glyphicon-cloud"></span>&nbsp;Run Up</a></p></center>
-            <center><p>Developer On Duty: Meek Technologies - Copyright &copy; 2011-2022 - All Rights Reserved</p></center>
-            <center><p>Ad World:&nbsp;&nbsp;<a href="AdCompanyInfo.aspx">Advertise</a>&nbsp;||&nbsp;Donations:&nbsp;&nbsp;<a href="/Donations/Donations/DonateFace">Pledge</a></p></center>
-            <center><p><a href="MembershipEntry.aspx">Become A Member</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>
-            <%-- <center><p><a href="TrackDonation.aspx">Track My Donations</a>&nbsp;||&nbsp;<a href="Meek/MeekHome/AboutUs">About Us</a></p></center>--%>
-            <%--<center><p>Advertise:&nbsp;&nbsp;<a href="mailto:onefarmads@gmail.com">Advertise With Us</a></p></center>--%>
-            <h3><asp:Label ID="loginLabel" Visible="false" runat="server" Text=""></asp:Label></h3>
-           <%-- <center><p class="fl_right">WW:<span><asp:Label ID="userCountLabel" runat="server" Text=""></asp:Label></span></p></center>--%>
+          <br />
+          <center><p>Developer on Duty: Waldo - Copyright &copy; 2024 - All Rights Reserved</p></center>
+         
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

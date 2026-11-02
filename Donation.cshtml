@@ -1,0 +1,129 @@
+﻿
+@{
+    Layout = null;
+
+    string total = Request.QueryString["total"];
+
+    //////2
+    //HttpCookie memberCookie = Request.Cookies["MemberCookieInfo"];
+    //string memberAccountNumber = memberCookie["memberNumber"];
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>One State</title>
+    <link rel="stylesheet" href="~/layout/styles/layout.css" type="text/css" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <script type="text/javascript" src="~/layout/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/layout/scripts/jquery.ui.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @using Microsoft.Web.Helpers;
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/CustomStyles.css" rel="stylesheet">
+    <link href="~/Navigation.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            @*<a href="/MarketPlace/Market/AllVendors?memberAccountNumber=@memberAccountNumber + &vendorNumber= + @vendorNumber" class="navbar-brand">One Farm(beta)</a>*@
+            <a href="Default.aspx" class="navbar-brand">One State(beta)</a>
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse navHeaderCollapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="TrackDonation.aspx">Track My Donations</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+
+    <div class="page-header">
+
+        <br /><br />
+
+        <h1>One Farm Donations</h1>
+
+        <p class="lead">"Make Worry Free Donations"</p>
+
+    </div>
+
+    <center>
+        <div>
+            <script src="https://www.paypal.com/sdk/js?client-id=AQ6A6kHw_EF3gLPT3gTCHbN5t-eJr-4UWFZt6-aTsfBRS6QNAzpIDnF-o1DMZ6GsLq-0okjbJnLgjIv2&currency=USD"></script>
+            <!-- Set up a container element for the button -->
+            <div id="paypal-button-container"></div>
+            <script>
+
+            window.onload = function payMe() {
+
+                paypal.Buttons({
+                    // Sets up the transaction when a payment button is clicked
+                    createOrder: (data, actions) => {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+
+                                    value: '@total'// Can also reference a variable or function
+                                }
+                            }]
+                        });
+                    },
+                    // Finalize the transaction after payer approval
+                    onApprove: (data, actions) => {
+                        return actions.order.capture().then(function (orderData) {
+                            // Successful capture! For dev/demo purposes:
+                            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                            const transaction = orderData.purchase_units[0].payments.captures[0];
+                            /*alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);*/
+                            // When ready to go live, remove the alert and show a success message within this page. For example:
+                            // const element = document.getElementById('paypal-button-container');
+                            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                            // Or go to another URL:  actions.redirect('thank_you.html');
+
+                            actions.redirect('~/Support/Support/DonateFace');
+                        });
+                    }
+                }).render('#paypal-button-container');
+            }
+            </script>
+        </div>
+    </center>
+
+    <br /><br /><br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <!--Footer-->
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <br />
+            <center><p>&nbsp;Share: @LinkShare.GetHtml("LinkShare Example", linkSites: new[] { LinkShareSite.Facebook, LinkShareSite.Twitter })&nbsp;</p></center>
+            <center><p>Contact Us Today!&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:the18th_helpdesk@yahoo.com">Member Service</a></p></center>
+            <center><p>Developer on Duty: Waldo - Copyright &copy; 2024 - All Rights Reserved</p></center>
+            @*<center><p>Committee Admin: &nbsp;&nbsp;<a href="/SteeringFace">Enter Steering</a></p></center>*@
+        </div>
+    </div>
+</body>
+</html>
+
+

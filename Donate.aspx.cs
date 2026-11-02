@@ -42,239 +42,240 @@ namespace The18th
 
         }
 
-        protected void donateButton_Click(object sender, EventArgs e)
-        {
+        //protected void donateButton_Click(object sender, EventArgs e)
+        //{
 
-            The18th.Areas.Donations.DonationDTOs.DonateDto don = new The18th.Areas.Donations.DonationDTOs.DonateDto();
-            don.DonateID = Guid.NewGuid();
-            don.DonorNumber = createADonorNumber();
-            don.FirstName = firstNameTextBox.Text;
-            don.Phone = phoneTextBox.Text;
-            don.Email = emailTextBox.Text;
-            don.DonationType = donationTypeDropDownList.SelectedValue;
-            don.DonationAmount = donAmountDropDownList.SelectedValue;
-            don.Amount = 0.00;
-            don.DonationDate = DateTime.Now;
+        //    The18th.Areas.TribalCRM.TribalDTOs.DonateDto don = new The18th.Areas.TribalCRM.TribalDTOs.DonateDto();
+        //    don.DonateID = Guid.NewGuid();
+        //    don.DonorNumber = createADonorNumber();
+        //    don.FirstName = firstNameTextBox.Text;
+        //    don.Phone = phoneTextBox.Text;
+        //    don.Email = emailTextBox.Text;
+        //    don.DonorType = donationTypeDropDownList.SelectedValue;
+        //    don.DonationAmount = donAmountDropDownList.SelectedValue;
+        //    don.Amount = 0.00;
+        //    don.DonationDate = DateTime.Now;
 
 
-            try
-            {
+        //    try
+        //    {
 
-                if (don.FirstName.Trim().Length == 0)
-                    throw new Exceptions.RequiredException("please complete all required fields");
+        //        if (don.FirstName.Trim().Length == 0)
+        //            throw new Exceptions.RequiredException("please complete all required fields");
 
-                if (don.Phone.Trim().Length == 0)
-                    throw new Exceptions.RequiredException("please complete all required fields");
+        //        if (don.Phone.Trim().Length == 0)
+        //            throw new Exceptions.RequiredException("please complete all required fields");
 
-                if (don.Email.Trim().Length == 0)
-                    throw new Exceptions.RequiredException("please complete all required fields");
+        //        if (don.Email.Trim().Length == 0)
+        //            throw new Exceptions.RequiredException("please complete all required fields");
 
-                if (don.DonationType == "Select Donation Type...")
-                    throw new Exceptions.RequiredException("please complete all required fields");
+        //        if (don.DonorType == "Select Donation Type...")
+        //            throw new Exceptions.RequiredException("please complete all required fields");
 
-                if (don.DonationAmount == "Select Donation Amount...")
-                    throw new Exceptions.RequiredException("please complete all required fields");
+        //        if (don.DonationAmount == "Select Donation Amount...")
+        //            throw new Exceptions.RequiredException("please complete all required fields");
 
 
-                if (don.DonationAmount == "5.00")
-                {
+        //        if (don.DonationAmount == "5.00")
+        //        {
 
-                    don.Amount = double.Parse(don.DonationAmount);
+        //            don.Amount = double.Parse(don.DonationAmount);
 
-                }
+        //        }
 
-                else if (don.DonationAmount == "10.00")
-                {
+        //        else if (don.DonationAmount == "10.00")
+        //        {
 
-                    don.Amount = double.Parse(don.DonationAmount);
+        //            don.Amount = double.Parse(don.DonationAmount);
 
-                }
+        //        }
 
-                else if (don.DonationAmount == "15.00")
-                {
+        //        else if (don.DonationAmount == "15.00")
+        //        {
 
-                    don.Amount = double.Parse(don.DonationAmount);
+        //            don.Amount = double.Parse(don.DonationAmount);
 
-                }
+        //        }
 
-                else if (don.DonationAmount == "20.00")
-                {
+        //        else if (don.DonationAmount == "20.00")
+        //        {
 
-                    don.Amount = double.Parse(don.DonationAmount);
+        //            don.Amount = double.Parse(don.DonationAmount);
 
-                }
+        //        }
 
-                else if (don.DonationAmount == "25.00")
-                {
+        //        else if (don.DonationAmount == "25.00")
+        //        {
 
-                    don.Amount = double.Parse(don.DonationAmount);
+        //            don.Amount = double.Parse(don.DonationAmount);
 
-                }
+        //        }
 
-                else if (don.DonationAmount == "50.00")
-                {
+        //        else if (don.DonationAmount == "50.00")
+        //        {
 
-                    don.Amount = double.Parse(don.DonationAmount);
+        //            don.Amount = double.Parse(don.DonationAmount);
 
-                }
+        //        }
 
 
-                else if (don.DonationAmount == "100.00")
-                {
+        //        else if (don.DonationAmount == "100.00")
+        //        {
 
-                    don.Amount = double.Parse(don.DonationAmount);
+        //            don.Amount = double.Parse(don.DonationAmount);
 
-                }
+        //        }
 
+        //        if (Page.IsValid)
+        //        {
+                    
+        //            The18th.Areas.TribalCRM.Data.DonationManager.AddDonation(don);
 
-                The18th.Areas.Donations.Data.DonationManager.AddDonation(don);
+        //            //Original
+        //            //Response.Redirect("~/Matrix.aspx?total=" + don.Amount
+        //            //    + "&payType=" + "Donation"
+        //            //    );
 
-            }
+        //            Response.Redirect("https://avatar-growers.com/onestate-donations/");
 
-            catch (RequiredException ex)
-            {
-                string message = ex.MessageError;
+        //        }
 
-                return;
-            }
+        //        else
+        //        {
 
-            catch (NullReferenceException ex)
-            {
-                string message = ex.Message;
-            }
+        //            return;
 
-            catch (Exception ex)
-            {
-                string message = "";
+        //        }
 
-                message = ex.Message;
 
-                return;
+        //    }
 
-            }
+        //    catch (RequiredException ex)
+        //    {
+        //        string message = ex.MessageError;
 
-            //After Payment
-            //Response.Redirect("~/DonationConfirmation.aspx");
+        //        return;
+        //    }
 
+        //    catch (NullReferenceException ex)
+        //    {
+        //        string message = ex.Message;
+        //    }
 
-            Response.Redirect("~/OneState/OneState/Donation?total=" + don.Amount);
+        //    catch (Exception ex)
+        //    {
+        //        string message = "";
 
+        //        message = ex.Message;
 
-            //Response.Redirect("~/Donate10.aspx?donNumber=" + don.DonorNumber
-            //  + "&firstName=" + don.FirstName
-            //  + "&phone=" + don.Phone
-            //  + "&email=" + don.Email
-            //  + "&donType=" + don.DonationType
-            //  + "&donAmount=" + "10.00"
-            //  + "&donDate=" + don.DonationDate
-            //  );
+        //        return;
 
+        //    }
+    
+        //}
 
+        ////new 8-1-23
+        //public static void sendYahooMessageEmail(The18th.Areas.TribalCRM.TribalDTOs.DonateDto completeDon)
+        //{
 
-        }
 
-        //new 8-1-23
-        public static void sendYahooMessageEmail(The18th.Areas.Donations.DonationDTOs.DonateDto completeDon)
-        {
+        //    System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
 
-            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+        //    string ourCompanyInfo = "\n \nDonation info is... \n";
 
+        //    string firstName = completeDon.FirstName;
 
-            string ourCompanyInfo = "\n \nDonation info is... \n";
+        //    string phone = completeDon.Phone;
 
-            string firstName = completeDon.FirstName;
+        //    string email = completeDon.Email;
 
-            string phone = completeDon.Phone;
+        //    string donorNumber = completeDon.DonorNumber;
 
-            string email = completeDon.Email;
+        //    string donationDate = completeDon.DonationDate.ToShortDateString();
 
-            string donorNumber = completeDon.DonorNumber;
+        //    //////////////////////////our email
 
-            string donationDate = completeDon.DonationDate.ToShortDateString();
+        //    string body = String.Format("\n \n A new donation has just been created.");
 
-            //////////////////////////our email
+        //    string information = String.Format("A donation has been created with OneFarm");
 
-            string body = String.Format("\n \n A new donation has just been created.");
+        //    string signature = String.Format(" \n \n OneFarm Admin Team,\n Donations,\n the18th.org, \n pledgethe18th@yahoo.com, \n \n Problems with donations please call 806-805-4249");
 
-            string information = String.Format("A donation has been created with OneFarm");
+        //    MailMessage myMessage = new MailMessage("pledgethe18th@yahoo.com", "pledgethe18th@yahoo.com");
 
-            string signature = String.Format(" \n \n OneFarm Admin Team,\n Donations,\n the18th.org, \n pledgethe18th@yahoo.com, \n \n Problems with donations please call 806-805-4249");
+        //    myMessage.Subject = information;
+        //    myMessage.Body = body + " \n " + ourCompanyInfo + " \n " +
+        //                                "Donors Name :" + firstName + "\n \n" +
+        //                                "Phone :" + phone + " \n \n" +
+        //                                "Donors Email :" + email + " \n \n" +
+        //                                "Donor Number :" + donorNumber + " \n \n" +
+        //                                "Donation Date :" + donationDate + " \n " +
+        //                                signature;
 
-            MailMessage myMessage = new MailMessage("pledgethe18th@yahoo.com", "pledgethe18th@yahoo.com");
 
-            myMessage.Subject = information;
-            myMessage.Body = body + " \n " + ourCompanyInfo + " \n " +
-                                        "Donors Name :" + firstName + "\n \n" +
-                                        "Phone :" + phone + " \n \n" +
-                                        "Donors Email :" + email + " \n \n" +
-                                        "Donor Number :" + donorNumber + " \n \n" +
-                                        "Donation Date :" + donationDate + " \n " +
-                                        signature;
+        //    ///////////////////////Donors Email
 
+        //    string customerAccountInfo = "\n Your donation has been created.";
 
-            ///////////////////////Donors Email
+        //    var customerEmail = "";
 
-            string customerAccountInfo = "\n Your donation has been created.";
+        //    customerEmail = email;
 
-            var customerEmail = "";
+        //    string customerbody = String.Format("\n \n \n Thank you for contributing! \n");
 
-            customerEmail = email;
+        //    string customerinformation = String.Format("Donation with OneFarm");
 
-            string customerbody = String.Format("\n \n \n Thank you for contributing! \n");
+        //    string customerSignature = String.Format(" \n \n OneFarm Admin Team,\n Donations,\n the18th.org, \n pledgethe18th@yahoo.com, \n \n Problems with donations please call 806-805-4249");
 
-            string customerinformation = String.Format("Donation with OneFarm");
 
-            string customerSignature = String.Format(" \n \n OneFarm Admin Team,\n Donations,\n the18th.org, \n pledgethe18th@yahoo.com, \n \n Problems with donations please call 806-805-4249");
 
+        //    MailMessage customerMessage = new MailMessage(customerEmail, customerEmail);
 
+        //    customerMessage.Subject = customerinformation;
+        //    customerMessage.Body = customerbody + " \n " + customerAccountInfo + " \n " +
+        //                                "Please make note of your donor number :" + donorNumber + " \n \n" +
+        //                                "Donation Date :" + donationDate + " \n " +
+        //                                customerSignature;
 
-            MailMessage customerMessage = new MailMessage(customerEmail, customerEmail);
 
-            customerMessage.Subject = customerinformation;
-            customerMessage.Body = customerbody + " \n " + customerAccountInfo + " \n " +
-                                        "Please make note of your donor number :" + donorNumber + " \n \n" +
-                                        "Donation Date :" + donationDate + " \n " +
-                                        customerSignature;
+        //    ////////////////////////Customer Email End
 
 
-            ////////////////////////Customer Email End
 
+        //    SmtpClient smptClient = new SmtpClient("smtp.mail.yahoo.com", 465);
 
 
-            SmtpClient smptClient = new SmtpClient("smtp.mail.yahoo.com", 465);
+        //    smptClient.Credentials = new System.Net.NetworkCredential()
+        //    {
 
+        //        UserName = "pledgethe18th@yahoo.com",
+        //        Password = "getSomethingDone"
 
-            smptClient.Credentials = new System.Net.NetworkCredential()
-            {
+        //    };
 
-                UserName = "pledgethe18th@yahoo.com",
-                Password = "getSomethingDone"
+        //    smptClient.EnableSsl = true;
+        //    smptClient.Send(myMessage);
 
-            };
 
-            smptClient.EnableSsl = true;
-            smptClient.Send(myMessage);
+        //    try
+        //    {
 
+        //        smptClient.Send(myMessage);
 
-            try
-            {
+        //        smptClient.Send(customerMessage);
+        //    }
 
-                smptClient.Send(myMessage);
 
-                smptClient.Send(customerMessage);
-            }
+        //    catch (Exception ex)
+        //    {
 
+        //        string message = ex.Message;
 
-            catch (Exception ex)
-            {
+        //    }
 
-                string message = ex.Message;
 
-            }
-
-
-        }
+        //}
 
 
         //ff////////////////////////////////////////////////////////////////////////////
@@ -300,12 +301,12 @@ namespace The18th
         private void SlideAd(string placement)
         {
             Random rnd = new Random();
-            string[] banners = new string[5];
+            string[] banners = new string[4];
             banners[0] = "1.jpg";
             banners[1] = "2.jpg";
             banners[2] = "3.jpg";
             banners[3] = "4.jpg";
-            banners[4] = "5.jpg";
+            //banners[4] = "5.jpg";
             // Generate random indexes for banners.
             int mIndex = rnd.Next(banners.Length);
 

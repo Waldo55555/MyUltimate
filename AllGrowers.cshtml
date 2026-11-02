@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "AllGrowers";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+     
+    string invitationAccountNumber = Request.QueryString["invitationAccountNumber"];
+
+    var growers = The18th.Areas.Directory.Data.DirectoryManager.GetAllGrowers();
+
+    var myQuery = (from c in growers
+                   orderby c.GrowerListingID ascending
+                   select c).Take(5);
+
+    var myList = new List<The18th.Areas.Growers.GrowersDTOs.GrowerListingDto>(myQuery);
+
+    if (myList.Count <= 0)
+    {
+        The18th.Areas.Growers.GrowersDTOs.GrowerListingDto myOtherMessage = new The18th.Areas.Growers.GrowersDTOs.GrowerListingDto();
+        myOtherMessage.Message = "No results at this time";
+        <Center><h2>@myOtherMessage.Message</h2></Center>
+        Response.Redirect("GrowerNotFound");
+    }
+
+}
+
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="CustomStyles.css" rel="stylesheet">
+<link href="BackgroundStyles.css" rel="stylesheet">
+
+<div class="container">
+
+    <div class="page-header">
+
+        <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/CustomStyles.css" rel="stylesheet">
+        <link href="~/BackgroundStyles.css" rel="stylesheet">
+
+        <Center><h2>All Growers</h2></Center>
+
+        <Center><p>Explore and Discover</p></Center>
+        <br />
+
+        <div class="table-responsive">
+            <table class="table table-condensed table-responsive" CellPadding="0" CellSpacing="0" border="0">
+                @*table-hover*@
+                <tr>
+                    <th>
+                        <strong>&nbsp;</strong>
+                    </th>
+                    <th>
+                        <strong>Grower Name:</strong>
+                    </th>
+                    <th>
+                        <strong>Location:</strong>
+                    </th>
+                    <th>
+                        <strong>Grower Type:</strong>
+                    </th>
+                    <th>
+                        <strong>Directions:</strong>
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in myQuery)
+                {
+
+                    //Mask
+                    string trueBill38 = item.GrowerNumber;
+
+                    <tr>
+                        <td CellPadding="0" CellSpacing="0" border="0">
+                            @*<img src="data:Image/jpg;base64,@(Html.Raw(Convert.ToBase64String(item.PhotoData)))" class="img-fluid img-circle" width="60" height="60" alt="grower photo" />*@
+                            <img src="@item.GrowerImage" height="60" width="60" alt="grower photo" />
+                        </td>
+                        <td>
+                            @item.GrowerName
+                        </td>
+                        <td>
+                            @item.Location
+                        </td>
+                        <td>
+                            @item.GrowerType
+                        </td>
+                        <td>
+                            @Maps.GetGoogleHtml(item.MapAddress, width: "0", height: "0")
+                        </td>
+                        <td>
+                            @*Annonymous Version*@
+                            <center><p><a class="btn btn-md btn-primary" href="@item.Action?trueBill38*67NofollowUpTo67$=@trueBill38 + &selectedGrowerNumber= + @item.GrowerNumber">Visit &raquo;</a></p></center>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+        @*Needs layout uncommented on layout page*@
+        <ul class="pagination">
+            <center>
+            <li class="disabled"><a href="#">&laquo;Previous</a></li>
+            <li class="active"><a href="AllGrowers">1</a></li>
+            <li><a href="AllGrowersPaged">2</a></li>
+            <li><a href="AllGrowersPage1">3</a></li>
+            <li><a href="AllGrowersPage2">4</a></li>
+            <li class="disabled"><a href="#">Next &raquo;</a></li>
+            </center>
+        </ul>
+
+        <br /><br />
+        <center><p><a class="btn btn-md btn-primary" href="~/Welcome.aspx">Return to Home &raquo;</a></p></center>
+        @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>*@
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br />
+
+    </div>
+
+</div>

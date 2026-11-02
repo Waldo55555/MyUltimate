@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "DonateFace";
+    Layout = "~/Areas/Support/Views/Shared/_SupportLayoutPage.cshtml";
+
+    var roles = The18th.Areas.Support.Data.SupportManager.GetAllContributors();
+
+    var over = The18th.Areas.Support.Data.SupportManager.GetOverhead();
+
+    //for rendering fanbase
+    var avatargrowers = "@avatargrowers";
+
+}
+
+
+<meta charset="utf-8" />
+<title>Avatar Growers(Beta)</title>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript" language="javascript">
+    function EmptyOut() {
+        $("#displayarea").empty();
+    }
+</script>
+
+<div class="">
+    <div class="container">
+        <center><h3 class="h1 text-center">Support Our Platform</h3></center>
+
+        <div id="container" class="clear">
+            <h4>Support</h4>
+            <p>Contributions are not the same as Stakeholder funds or member funds. Contributions are made to sustain our platform.</p>
+            <p>Your Contribution to AG are only for the use of our administrative duties.</p>
+        </div>
+    </div>
+
+    <hr />
+
+    <center>
+
+        <h3>Support Options</h3>
+
+    </center>
+
+    <br />
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed" CellPadding="0" CellSpacing="0" border="0">
+            <tr>
+
+                <th>
+                    <strong>Support Descriptions:</strong>
+                </th>
+                <th>
+                    <strong>Subscribe:</strong>
+                </th>
+                @*<th></th>*@
+            </tr>
+            @foreach (var item in over)
+            {
+                <tr>
+                   
+                    <td>
+                        @Ajax.ActionLink("Full Description", "SeeOverheadDescriptions", new { id = item.OverheadNumber, item.OverheadNumber }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "overdescriptionarea",
+                                InsertionMode = InsertionMode.Replace,
+                                LoadingElementId = "loadSpinner",
+                            })
+
+                    </td>
+                    <td>
+                        <center><p><a class="btn btn-sm btn-primary" href="https://www.fanbase.app/@avatargrowers" target="_blank">Support Now &raquo;</a></p></center>
+                    </td>
+                </tr>
+                <tr>
+                    <center><strong><em><h4><div id="overdescriptionarea"></div></h4></em></strong></center>
+                    <center><div id="loadSpinner" style="display:none"> <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" height="120" width="120" alt="Loading..." /></div></center>
+                    <center><div id="overdisplayarea"><span></span></div></center>
+                </tr>
+
+            }
+        </table>
+    </div>
+
+    <br />
+
+    @*----------------------------------------------------------------------------------------------------------*@
+   
+    <br />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+
+    <br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    @*</div>*@
+
+</div>
+

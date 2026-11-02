@@ -1,0 +1,170 @@
+﻿@model The18th.Areas.Segway.SegwayDTOs.DriveOrderDto
+
+@{
+
+    ViewBag.Title = "ProductCounter";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+
+    HttpCookie myCookie = Request.Cookies["GrowerCookie"];
+    var currentGrowerNumber = myCookie["growerNumber"];
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    var ourClientPhoto = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProfilePhoto(currentGrowerNumber);
+
+    The18th.Areas.Growers.GrowersDTOs.GrowerProfileDto myGrower = new The18th.Areas.Growers.GrowersDTOs.GrowerProfileDto();
+    myGrower.GrowerNumber = currentGrowerNumber;
+
+    var pulledGrowerProfile = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProfile(currentGrowerNumber);
+
+    var pulledMarketInfo = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationMarket(currentGrowerNumber);
+
+    //Appends Here but not on rendering!
+    var growerWebAddress = String.Format(pulledMarketInfo.WebAddress + "/" + pulledGrowerProfile.GrowerName);
+ 
+    var growerLocation = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationLocation(currentGrowerNumber);
+
+    int quantity = int.Parse(Request.QueryString["quantity"]);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    string potentialOrder = "1";
+
+    //New
+    var selectedProduct = The18th.Areas.Growers.Data.GrowerMarketEvaluationManager.GetEvaluationProducts(currentGrowerNumber);
+    
+
+    The18th.Areas.Growers.GrowersDTOs.GrowerProfileDto grower = new The18th.Areas.Growers.GrowersDTOs.GrowerProfileDto();
+    grower.GrowerNumber = pulledGrowerProfile.GrowerNumber;
+    grower.GrowerName = pulledGrowerProfile.GrowerName;
+    grower.GrowerPhone = pulledGrowerProfile.GrowerPhone;
+
+    The18th.Areas.Growers.GrowersDTOs.GrowerLocationInfoDto location = new The18th.Areas.Growers.GrowersDTOs.GrowerLocationInfoDto();
+    //location.Address = growerLocation.Address;
+    location.Location = growerLocation.Location;
+
+
+
+}
+
+
+<h2>Pending Order</h2>
+
+<div class="container">
+
+    <div class="page-header">
+
+        <p class="lead">Complete Your Order</p>
+
+    </div>
+
+    <Center><p>Please review order from this grower in our marketplace.</p></Center>
+
+    <hr />
+
+    <br />
+
+    <p class="lead">Grower Details</p>
+
+    <div class="table-responsive">
+        <table class="table table-condensed table-responsive" CellPadding="0" CellSpacing="0">
+            <tr>
+                <th>
+                    <strong>Grower:</strong>
+                </th>
+                <th>
+                    <strong>Name:</strong>
+                </th>
+                <th>
+                    <strong>Location:</strong>
+                </th>
+                <th>
+                    <strong>Phone:</strong>
+                </th>
+
+                <th></th>
+            </tr>
+
+            <tr>
+                <td CellPadding="0" CellSpacing="0">
+                    @*<img src="data:Image/jpg;base64,@(Html.Raw(Convert.ToBase64String(ourClientPhoto.PhotoData)))" class="img-fluid img-rounded" width="100" height="100" alt="grower photo" />*@
+                    <center><a href="#"><img src="@ourClientPhoto.FullImagePath" height="60" width="60" alt="grower photo" /></a></center>
+                </td>
+                <td>
+
+                    @pulledGrowerProfile.GrowerName
+
+                </td>
+                <td>
+                    @growerLocation.Location
+                    @*@growerLocation.FullAddress*@
+
+                </td>
+                <td>
+
+                    @pulledGrowerProfile.GrowerPhone &nbsp;&nbsp;&nbsp;&nbsp;
+
+                </td>
+                <td>
+                   
+                    <p class="title"><a class="btn btn-md btn-primary" href="AboutGrower?growerNumber=@myGrower.GrowerNumber" target="_blank">About Grower</a></p>
+
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <!-------------------------------------------------------------------------------------------------------------->
+    <p class="lead">Selected Item Details</p>
+    <div class="table-responsive">
+        <table class="table table-condensed table-responsive" CellPadding="0" CellSpacing="0">
+            <tr>
+                <th>
+                    <strong>Product:</strong>
+                </th>
+                <th>
+                    <strong>Name:</strong>
+                </th>
+                <th>
+                    <strong>Description:</strong>
+                </th>
+                <th>
+                    <strong>Price:</strong>
+                </th>
+                <th>
+                    <strong>Quantity:</strong>
+                </th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <td CellPadding="0" CellSpacing="0">
+                    <img src="@Url.Content(selectedProduct.ProductImage)" width="100" height="100" alt="farm photo" />
+                </td>
+                <td>
+                    @selectedProduct.ProductName
+                </td>
+                <td>
+                    @selectedProduct.FullDescription
+                </td>
+                <td>
+                    $@Html.Raw(selectedProduct.PricePerItem)<span>&nbsp;Each</span>
+                </td>
+                <td>
+                    @*@oi.Quantity<span>&nbsp;Bushels</span>*@
+                    <span>&nbsp;1</span>
+                </td>
+                <td>
+                    <p class="title"><a class="btn btn-md btn-primary" href="DeleteCrop?gaping=@selectedProduct.GrowerNumber">Remove Item</a></p>
+                    &nbsp;
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <center><p><a class="btn btn-md btn-primary" href="PendingProductOrder?can33=@potentialOrder">Continue With Order</a></p></center><br />
+    <p>&nbsp;</p>
+    <br /><br /><br /><br /><br /><br />
+    <br /><br /><br />
+</div>
+

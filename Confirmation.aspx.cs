@@ -30,160 +30,160 @@ namespace The18th
 
         }
 
-        protected void oneImageButton_Click(object sender, ImageClickEventArgs e)
-        {
+        //protected void oneImageButton_Click(object sender, ImageClickEventArgs e)
+        //{
 
-            resultLabel.Text = ViewState["ExistingAccountNum"].ToString();
+        //    resultLabel.Text = ViewState["ExistingAccountNum"].ToString();
 
-            var fromExistingAccountNumber = resultLabel.Text;
-
-
-            var ourMembership = The18th.Areas.MemberShip.Data.MembershipManager.GetMembershipByAccountNumber(fromExistingAccountNumber);
+        //    var fromExistingAccountNumber = resultLabel.Text;
 
 
-            //New
-            var nameBack = formatCardName(ourMembership);
-
-            The18th.Areas.MemberShip.MemberShipDTOs.TribalCardDto cardFeatures = new The18th.Areas.MemberShip.MemberShipDTOs.TribalCardDto();
-            cardFeatures.TribalCardID = Guid.NewGuid();
-            cardFeatures.MembershipNumber = ourMembership.MembershipNumber;
-            cardFeatures.AccountNumber = ourMembership.AccountNumber;
-            cardFeatures.PromotionCode = "OneFarm";
-            cardFeatures.CardImage = "~/Images/onecard.png";
-            cardFeatures.FirstName = ourMembership.FirstName;
-            cardFeatures.LastName = ourMembership.LastName;
-            cardFeatures.Phone = ourMembership.Phone;
-            cardFeatures.Email = ourMembership.Email;
-            cardFeatures.CardVendor = "One United";
-            cardFeatures.CardType = "Visa";
-            cardFeatures.NameOnCard = nameBack.ValueHolder;
-            cardFeatures.CardNumber = createCardNumber();
-            cardFeatures.Csc = "444";
-            cardFeatures.Points = 0;
-            cardFeatures.Balance = 0.0;
-            cardFeatures.PurchaseAmount = 0.0;
-            cardFeatures.ExpirationOnCard = DateTime.Now.AddYears(2);
+        //    var ourMembership = The18th.Areas.MemberShip.Data.MembershipManager.GetMembershipByAccountNumber(fromExistingAccountNumber);
 
 
-            try
-            {
+        //    //New
+        //    var nameBack = formatCardName(ourMembership);
+
+        //    The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto cardFeatures = new The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto();
+        //    cardFeatures.TribalCardID = Guid.NewGuid();
+        //    cardFeatures.MembershipNumber = ourMembership.MembershipNumber;
+        //    cardFeatures.AccountNumber = ourMembership.AccountNumber;
+        //    cardFeatures.PromotionCode = "OneFarm";
+        //    cardFeatures.CardImage = "~/Images/onecard.png";
+        //    cardFeatures.FirstName = ourMembership.FirstName;
+        //    cardFeatures.LastName = ourMembership.LastName;
+        //    cardFeatures.Phone = ourMembership.Phone;
+        //    cardFeatures.Email = ourMembership.Email;
+        //    cardFeatures.CardVendor = "One United";
+        //    cardFeatures.CardType = "Visa";
+        //    cardFeatures.NameOnCard = nameBack.ValueHolder;
+        //    cardFeatures.CardNumber = createCardNumber();
+        //    cardFeatures.Csc = "444";
+        //    cardFeatures.Points = 0;
+        //    cardFeatures.Balance = 0.0;
+        //    cardFeatures.PurchaseAmount = 0.0;
+        //    cardFeatures.ExpirationOnCard = DateTime.Now.AddYears(2);
 
 
-                //if (cardFeatures.Points <= 0)
-                //    throw new RequiredException("Must Be A New Card");
-
-                //if (cardFeatures.Balance <= 0.0)
-                //    throw new RequiredException("Must Be A New Card");
-
-                //if (cardFeatures.PurchaseAmount <= 0.0)
-                //    throw new RequiredException("Must Be A New Card");
+        //    try
+        //    {
 
 
-                //
-                //The18th.Areas.TribalCRM.Data.TribalCardManager.AddCard(cardFeatures);
-            }
+        //        //if (cardFeatures.Points <= 0)
+        //        //    throw new RequiredException("Must Be A New Card");
+
+        //        //if (cardFeatures.Balance <= 0.0)
+        //        //    throw new RequiredException("Must Be A New Card");
+
+        //        //if (cardFeatures.PurchaseAmount <= 0.0)
+        //        //    throw new RequiredException("Must Be A New Card");
 
 
-            catch (Exception ex)
-            {
-
-                string message = "";
-
-                message = ex.Message;
-
-            }
-
-            //Start here to finish automated membership
-            Response.Redirect("/TribalCRM/Tribal/CRMConfirmation?trueBill38=" + cardFeatures.AccountNumber);
+        //        //
+        //        The18th.Areas.TribalCRM.Data.TribalCardManager.AddCard(cardFeatures);
+        //    }
 
 
-        }
+        //    catch (Exception ex)
+        //    {
 
-        protected void greenImageButton_Click(object sender, ImageClickEventArgs e)
-        {
+        //        string message = "";
 
-            resultLabel.Text = ViewState["ExistingAccountNum"].ToString();
+        //        message = ex.Message;
 
-            var fromExistingAccountNumber = resultLabel.Text;
+        //    }
 
-
-            var ourMembership = The18th.Areas.MemberShip.Data.MembershipManager.GetMembershipByAccountNumber(fromExistingAccountNumber);
-
-            //New
-            var nameBack = formatCardName(ourMembership);
-
-            The18th.Areas.MemberShip.MemberShipDTOs.TribalCardDto cardFeatures = new The18th.Areas.MemberShip.MemberShipDTOs.TribalCardDto();
-            cardFeatures.TribalCardID = Guid.NewGuid();
-            cardFeatures.MembershipNumber = ourMembership.MembershipNumber;
-            cardFeatures.AccountNumber = ourMembership.AccountNumber;
-            cardFeatures.PromotionCode = "OneFarm";
-            cardFeatures.CardImage = "~/Images/greencard.png";
-            cardFeatures.FirstName = ourMembership.FirstName;
-            cardFeatures.LastName = ourMembership.LastName;
-            cardFeatures.Phone = ourMembership.Phone;
-            cardFeatures.Email = ourMembership.Email;
-            cardFeatures.CardVendor = "GreenWood";
-            cardFeatures.CardType = "Visa";
-            cardFeatures.NameOnCard = nameBack.ValueHolder;
-            cardFeatures.CardNumber = createCardNumber();
-            cardFeatures.Csc = "444";
-            cardFeatures.Points = 0;
-            cardFeatures.Balance = 0.0;
-            cardFeatures.PurchaseAmount = 0.0;
-            cardFeatures.ExpirationOnCard = DateTime.Now.AddYears(2);
+        //    //Start here to finish automated membership
+        //    Response.Redirect("/TribalCRM/Tribal/CRMConfirmation?trueBill38=" + cardFeatures.AccountNumber);
 
 
-            try
-            {
+        //}
 
-                //if (cardFeatures.Points <= 0)
-                //    throw new RequiredException("Must Be A New Card");
+        //protected void greenImageButton_Click(object sender, ImageClickEventArgs e)
+        //{
 
-                //if (cardFeatures.Balance <= 0.0)
-                //    throw new RequiredException("Must Be A New Card");
+        //    resultLabel.Text = ViewState["ExistingAccountNum"].ToString();
 
-                //if (cardFeatures.PurchaseAmount <= 0.0)
-                //    throw new RequiredException("Must Be A New Card");
+        //    var fromExistingAccountNumber = resultLabel.Text;
 
 
-                //
-                //The18th.Areas.TribalCRM.Data.TribalCardManager.AddCard(cardFeatures);
-            }
+        //    var ourMembership = The18th.Areas.MemberShip.Data.MembershipManager.GetMembershipByAccountNumber(fromExistingAccountNumber);
+
+        //    //New
+        //    var nameBack = formatCardName(ourMembership);
+
+        //    The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto cardFeatures = new The18th.Areas.TribalCRM.TribalDTOs.TribalCardDto();
+        //    cardFeatures.TribalCardID = Guid.NewGuid();
+        //    cardFeatures.MembershipNumber = ourMembership.MembershipNumber;
+        //    cardFeatures.AccountNumber = ourMembership.AccountNumber;
+        //    cardFeatures.PromotionCode = "OneFarm";
+        //    cardFeatures.CardImage = "~/Images/greencard.png";
+        //    cardFeatures.FirstName = ourMembership.FirstName;
+        //    cardFeatures.LastName = ourMembership.LastName;
+        //    cardFeatures.Phone = ourMembership.Phone;
+        //    cardFeatures.Email = ourMembership.Email;
+        //    cardFeatures.CardVendor = "GreenWood";
+        //    cardFeatures.CardType = "Visa";
+        //    cardFeatures.NameOnCard = nameBack.ValueHolder;
+        //    cardFeatures.CardNumber = createCardNumber();
+        //    cardFeatures.Csc = "444";
+        //    cardFeatures.Points = 0;
+        //    cardFeatures.Balance = 0.0;
+        //    cardFeatures.PurchaseAmount = 0.0;
+        //    cardFeatures.ExpirationOnCard = DateTime.Now.AddYears(2);
 
 
-            catch (Exception ex)
-            {
+        //    try
+        //    {
 
-                string message = "";
+        //        //if (cardFeatures.Points <= 0)
+        //        //    throw new RequiredException("Must Be A New Card");
 
-                message = ex.Message;
+        //        //if (cardFeatures.Balance <= 0.0)
+        //        //    throw new RequiredException("Must Be A New Card");
 
-            }
-
-            //Start here to finish automated membership
-            Response.Redirect("/TribalCRM/Tribal/CRMConfirmation?trueBill38=" + cardFeatures.AccountNumber);
+        //        //if (cardFeatures.PurchaseAmount <= 0.0)
+        //        //    throw new RequiredException("Must Be A New Card");
 
 
-        }
+        //        //
+        //        The18th.Areas.TribalCRM.Data.TribalCardManager.AddCard(cardFeatures);
+        //    }
+
+
+        //    catch (Exception ex)
+        //    {
+
+        //        string message = "";
+
+        //        message = ex.Message;
+
+        //    }
+
+        //    //Start here to finish automated membership
+        //    Response.Redirect("/TribalCRM/Tribal/CRMConfirmation?trueBill38=" + cardFeatures.AccountNumber);
+
+
+        //}
 
         /////////////////////////////////////////////Helpers
 
-        public The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto formatCardName(The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto sent)
-        {
+        //public The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto formatCardName(The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto sent)
+        //{
 
-            The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto createName = new The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto();
-            createName.FirstName = sent.FirstName;
-            createName.LastName = sent.LastName;
+        //    The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto createName = new The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto();
+        //    createName.FirstName = sent.FirstName;
+        //    createName.LastName = sent.LastName;
 
-            var fullName = String.Format(createName.FirstName + " " + createName.LastName);
+        //    var fullName = String.Format(createName.FirstName + " " + createName.LastName);
 
-            The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto createdName = new The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto();
-            createdName.ValueHolder = fullName;
+        //    The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto createdName = new The18th.Areas.MemberShip.MemberShipDTOs.MembershipDto();
+        //    createdName.ValueHolder = fullName;
 
-            return (createdName);
+        //    return (createdName);
 
 
-        }
+        //}
 
         //Up For Deletion
         //private string createCsc()

@@ -1,0 +1,49 @@
+﻿@model The18th.Areas.Directory.DirectoryDTOs.SearchDto
+
+@{
+    ViewBag.Title = "GrowerSearch";
+    Layout = "~/Areas/Growers/Views/Shared/_GrowerMarketLayoutPage.cshtml";
+}
+
+<h2>Grower Search</h2>
+
+<center><p>Support the growers that support your community. Find growers near you or those that ship to you!</p></center>
+<center><p>Locate growers near you, patronize them, and build upon our platform of sustainability.</p></center>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        .
+        @*<h4>SearchDto</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Location", string.Empty)
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GrowerType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("GrowerType", string.Empty)
+                @Html.ValidationMessageFor(model => model.GrowerType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-md btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
